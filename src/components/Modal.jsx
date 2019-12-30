@@ -1,6 +1,24 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import styled, { keyframes, css } from 'styled-components';
 import Button from './Button';
+
+// 애니메이션 이름
+const fadeIn = keyframes`
+	from { opacity:0 }
+	to { opacity:1 }
+`;
+const fadeOut = keyframes`
+	from { opacity:1 }
+	to { opacity:0 }
+`;
+const slideUp = keyframes`
+	from { transform: translateY(200px) }
+	to { transform: translateY(0) }
+`;
+const slideDown = keyframes`
+	from { transform: translateY(0) }
+	to { transform: translateY(200px) }
+`;
 
 const DarkBackground = styled.div`
 	position:fixed;
@@ -12,6 +30,21 @@ const DarkBackground = styled.div`
 	align-items:center;
 	justify-content:center;
 	background:rgba(0,0,0,0.8);
+
+	/* 애니메이션 설정 */
+
+  animation-duration: 0.25s;
+  animation-timing-function: ease-out;
+  animation-name: ${fadeIn};
+  animation-fill-mode: forwards;
+
+
+	${props =>
+		props.disappear &&
+		css`
+			animation-name: ${fadeOut};
+		`
+	}
 `;
 
 // Modal 스타일
@@ -29,6 +62,16 @@ const ModalBlock = styled.div`
 	p {
 		font-size:1.125rem;
 	}
+	
+	animation-duration:0.25s;
+	animation-timing-function: ease-out;
+	animation-name:${slideUp};
+	animation-fill-mode: forwards;
+	
+	${props => props.disappear && css`
+		animation-name:${slideDown};
+	`}
+
 `;
 
 // Modal내 Button 레이아웃
@@ -47,10 +90,23 @@ const ShortMarginButton = styled(Button)`
 `;
 
 function Modal({ title, children, confirmText, cancelText, visible, onConfirm, onCancel }){
-  if(!visible) return null;
+	
+  const [animate, setAnimate] = useState(false);
+  const [localVisible, setLocalVisible] = useState(visible);
+
+  useEffect(() => {
+    // visible 값이 true -> false 가 되는 것을 감지
+    if (localVisible && !visible) {
+      setAnimate(true);
+      setTimeout(() => setAnimate(false), 250);
+    }
+    setLocalVisible(visible);
+	}, [localVisible, visible]);
+	if (!animate && !localVisible) return null;
+	
 	return (
-		<DarkBackground>
-			<ModalBlock>
+		<DarkBackground disappear={!visible}>
+      <ModalBlock disappear={!visible}>
 				<h3>{title}</h3>
 				<p>{children}</p>
 				<ButtonGroup>
