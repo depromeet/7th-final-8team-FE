@@ -48,7 +48,7 @@ const StyledInput = styled.input.attrs({
   box-sizing:border-box;
   display: block;
   outline:none;
-  border: 1px solid #242729;
+  border: 1px solid #A9A9A9;
   border-radius: 4px;
   color: #242729;
   font-weight: bold;
@@ -58,6 +58,12 @@ const StyledInput = styled.input.attrs({
   &::placeholder {
     color: 	#A9A9A9;
   }
+  &:hover {
+    border-color:${darken(0.4, '#A9A9A9')};
+  };
+  &:focus {
+    border-color:${darken(0.8, '#A9A9A9')};
+  };
   ${sizeStyles}
 `;
 
