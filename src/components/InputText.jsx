@@ -68,7 +68,7 @@ const StyledInput = styled.input.attrs({
 `;
 
 
-function InputText({placeholder, label, size, ...rest}) {
+const InputText = ({placeholder, label, size, ...rest}) => {
   return (
     <StyledLabel size={size}>
       {label}
@@ -76,5 +76,7 @@ function InputText({placeholder, label, size, ...rest}) {
     </StyledLabel>
   )
 }
+
+InputText.defaultProps = { placeholder: '입력해주세요', label:'라벨', size:'medium' };
 
 export default InputText;
