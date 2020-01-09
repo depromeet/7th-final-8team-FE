@@ -2,8 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 class KakaoLogin extends Component {
   componentDidMount() {
-    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    const APPKEY = 'e4cc3f785699edbcea1c6531a9ae3f08';
+    const APPKEY = `${process.env.REACT_APP_APP_KEY}`;
     window.Kakao.init(APPKEY);
     // 카카오 로그인 버튼을 생성합니다.
     window.Kakao.Auth.createLoginButton({
