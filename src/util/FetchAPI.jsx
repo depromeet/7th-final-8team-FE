@@ -14,30 +14,31 @@ function reducer(state, action){
   }
 }
 
-export default function FetchAPI(method, URL, payload=null) {
+export default function FetchAPI(method, URL, headers=null, payload=null) {
   const [state, dispatch] = useReducer(reducer, {
     loading:false,
     data:null,
     error:null
-  })
-  
+  })  
+
+  const fetchData = async () => {
+    dispatch({type:'LOADING'});
+    try {
+      const response = await axios({
+        url:URL,
+        method:method,
+        headers:headers, // headers 형식 {'content-type': 'application/x-www-form-urlencoded'}
+        data:payload // payload 형식 {firstName: 'Fred',lastName: 'Flintstone'}
+      });
+      dispatch({type:'SUCCESS', data:response.data})
+    } catch (e) {
+      dispatch({type:'ERROR', data:e})
+    }
+  }
   
   useEffect(_=>{
-    const fetchData = async () => {
-      dispatch({type:'LOADING'});
-      try {
-        const response = await axios({
-          url:URL,
-          method:method,
-          headers:header, // header 형식 {'content-type': 'application/x-www-form-urlencoded'}
-          data:payload // payload 형식 {firstName: 'Fred',lastName: 'Flintstone'}
-        });
-        dispatch({type:'SUCCESS', data:response.data})
-      } catch (e) {
-        dispatch({type:'ERROR', data:e})
-      }
-    }
     fetchData();
-  },[method, URL, payload]);
+  },[]);
+  
   return state;
 }
