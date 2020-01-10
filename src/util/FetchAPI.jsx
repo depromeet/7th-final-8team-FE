@@ -29,6 +29,7 @@ export default function FetchAPI(method, URL, payload=null) {
         const response = await axios({
           url:URL,
           method:method,
+          headers:header, // header 형식 {'content-type': 'application/x-www-form-urlencoded'}
           data:payload // payload 형식 {firstName: 'Fred',lastName: 'Flintstone'}
         });
         dispatch({type:'SUCCESS', data:response.data})
