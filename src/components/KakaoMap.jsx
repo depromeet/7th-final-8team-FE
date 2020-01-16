@@ -38,4 +38,7 @@ function KakaoMap({datas}) {
   )
 }
 
+KakaoMap.defaultProps = [
+  {lat:33.507005, lng:126.492952},
+]
 export default KakaoMap;
