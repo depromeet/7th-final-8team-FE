@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 
-function Categories() {
+function Categories({ handleTouristAttraction, handleRestaurant, handleCafe}) {
 	return (
     <Wrapper>
-      <Category>관광지</Category>
-      <Category>맛집</Category>
-      <Category>카페</Category>
+      <Category onClick={handleTouristAttraction}>관광지</Category>
+      <Category onClick={handleRestaurant}>맛집</Category>
+      <Category onClick={handleCafe}>카페</Category>
     </Wrapper>
 	)
 }

@@ -11,13 +11,24 @@ class RecommendedPlaceContainer extends Component {
     
     // TODO: API call로 데이터 얻어야 함.
     this.state = {
+      fakeTouristAttractionList : [
+        {type: '관광지', name: '섭지코지', rating: 4.3, numberOfReviews: 7, picture:'#1abc9c'}, 
+        {type: '관광지', name: '동백키친', rating: 4.1, numberOfReviews: 6, picture:'#1abc9c'}, 
+        {type: '관광지', name: '이런 곳', rating: 3.9, numberOfReviews: 5, picture:'#1abc9c'}, 
+      ],
       fakeRestaurantList : [
-        {type: '자연명소', name: '섭지코지', rating: 4.3, numberOfReviews: 7, picture:'#1abc9c'}, 
-        {type: '이탈리안', name: '동백키친', rating: 4.1, numberOfReviews: 6, picture:'#2ecc71'}, 
-        {type: '하나', name: '이런 곳', rating: 3.9, numberOfReviews: 5, picture:'#3498db'}, 
-        {type: '둘', name: '저런 곳', rating: 3.7, numberOfReviews: 4, picture:'#9b59b6'}, 
-        {type: '셋', name: '그런 곳', rating: 3.5, numberOfReviews: 3, picture:'#34495e'}, 
-      ] 
+        {type: '맛집', name: '섭지코지', rating: 4.3, numberOfReviews: 7, picture:'#2ecc71'}, 
+        {type: '맛집', name: '동백키친', rating: 4.1, numberOfReviews: 6, picture:'#2ecc71'}, 
+        {type: '맛집', name: '이런 곳', rating: 3.9, numberOfReviews: 5, picture:'#2ecc71'}, 
+      ],
+      fakeCafeList : [
+        {type: '카페', name: '섭지코지', rating: 4.3, numberOfReviews: 7, picture:'#3498db'}, 
+        {type: '카페', name: '동백키친', rating: 4.1, numberOfReviews: 6, picture:'#3498db'}, 
+        {type: '카페', name: '이런 곳', rating: 3.9, numberOfReviews: 5, picture:'#3498db'}, 
+      ],
+      isSelectedTouristAttraction: true,
+      isSelectedRestaurant: false,
+      isSelectedCafe: false,
     } 
   }
 
@@ -29,7 +40,7 @@ class RecommendedPlaceContainer extends Component {
     // 스크롤이 맨 아래에 도달한 경우
     if (scrollHeight === scrollTop + clientHeight) {
       // fakeRestaurantList 배열에 다음 데이터 추가
-      const originalData = this.state.fakeRestaurantList.splice(0);
+      const originalData = this.state.fakeTouristAttractionList.splice(0);
       originalData.push(
         {type: '무', name: '한', rating: 4.3, numberOfReviews: 7, picture:'#1abc9c'}, 
         {type: '스', name: '크', rating: 4.1, numberOfReviews: 6, picture:'#2ecc71'}, 
@@ -37,21 +48,46 @@ class RecommendedPlaceContainer extends Component {
         {type: '생', name: '성', rating: 3.7, numberOfReviews: 4, picture:'#9b59b6'}, 
         {type: '된', name: '데이터', rating: 3.5, numberOfReviews: 3, picture:'#34495e'}, 
       );
-      this.setState({
-        fakeRestaurantList: originalData
-      });
+      this.setState({ fakeTouristAttractionList: originalData });
     }
+  }
+
+  handleTouristAttraction = () => {
+    this.setState({ isSelectedTouristAttraction: true });
+    this.setState({ isSelectedRestaurant: false });
+    this.setState({ isSelectedCafe: false });
+  }
+
+  handleRestaurant = () => {
+    this.setState({ isSelectedTouristAttraction: false });
+    this.setState({ isSelectedRestaurant: true });
+    this.setState({ isSelectedCafe: false });
+  }
+
+  handleCafe = () => {
+    this.setState({ isSelectedTouristAttraction: false });
+    this.setState({ isSelectedRestaurant: false });
+    this.setState({ isSelectedCafe: true });
   }
 
   render() {
     return (
       <Fragment>
-        <Categories /> {/* View: 관굉지, 맛집, 카페 */}
+        <Categories
+          isSelectedTouristAttraction={this.state.isSelectedTouristAttraction}
+          isSelectedRestaurant={this.state.isSelectedRestaurant}
+          isSelectedCafe={this.state.isSelectedCafe}
+
+          handleTouristAttraction={this.handleTouristAttraction}
+          handleRestaurant={this.handleRestaurant}
+          handleCafe={this.handleCafe}
+        />
         <RecommendedPlaces 
           onScroll={this.handleInfiniteScroll}
           ref={this.myRef}
         >
-          {this.state.fakeRestaurantList.map((item, idx) => 
+          {this.state.isSelectedTouristAttraction && 
+          this.state.fakeTouristAttractionList.map((item, idx) => 
             <RecommendedPlace 
               type={item.type}
               name={item.name}
