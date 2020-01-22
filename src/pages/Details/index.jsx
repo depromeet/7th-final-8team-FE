@@ -1,9 +1,9 @@
 import React from 'react';
-import Modal from 'components/Modal';
+import DetailReviews from '../../components/DetailReviews';
 
 function Details() {
   return (
-    <Modal />
+    <DetailReviews />
   );
 }
 
