@@ -1,16 +1,19 @@
-import React, {useEffect} from 'react';
+import React,{useEffect} from 'react';
 
-function KakaoMap({datas}) {
+function KakaoMap({datas, centerLatLng}) {
+	console.log(datas);
 	useEffect(()=>{
 		// ...마운트시 실행할 함수
 		// ...deps 값이 존재한다면 deps값이 설정, 변경될 때마다 실행할 함수
 		const kakao = window.kakao;
 		const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-		const options = { //지도를 생성할 때 필요한 기본 옵션
-			center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-			level: 3 //지도의 레벨(확대, 축소 정도)
-		};
 		
+		// 지도를 생성할 때 필요한 기본 옵션 중 level
+		const options = {
+			 //지도의 레벨(확대, 축소 정도)}
+			center: new kakao.maps.LatLng(centerLatLng.lat, centerLatLng.lng),
+			level: 5
+		}
 		const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 		
 		// // 커스텀 마커 이미지를 사용합니다.
@@ -38,7 +41,8 @@ function KakaoMap({datas}) {
   )
 }
 
-KakaoMap.defaultProps = [
-  {lat:33.507005, lng:126.492952},
-]
+KakaoMap.defaultProps = {
+	datas:[{ id: 1, lat: "37.546622", lng: "126.949685"}],
+	centerLatLng: {lat: "37.546622", lng: "126.949685"},
+}
 export default KakaoMap;
