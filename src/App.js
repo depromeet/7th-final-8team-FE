@@ -6,8 +6,8 @@ import Details from './pages/Details';
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/" component={Home}/>
-      <Route path="/datails" component={Details}/>
+      <Route exact path="/" component={Home}/>
+      <Route path="/details" component={Details}/>
     </BrowserRouter>
   );
 }
