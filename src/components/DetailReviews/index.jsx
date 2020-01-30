@@ -19,9 +19,11 @@ class DetailReviews extends Component {
   }
 
   componentDidMount() {
+    // 컴포넌트 마운트 되면 평점높은순으로 우선 정렬
     this.sort("평점높은순");
   }
 
+  // setState가 비동기라서 정렬하는 기능을 여기서 처리함. 이렇게 하는게 좋은건지 잘 모르겠음.
   componentDidUpdate(prevProps, prevState) {
     if (prevState.sortBySelected !== this.state.sortBySelected) {
       this.sort(this.state.sortBySelected);
@@ -37,12 +39,23 @@ class DetailReviews extends Component {
 
     if (selected === "평점높은순") {
       tempData = tempData.sort((a, b) => a.Rating < b.Rating ? 1 : -1);
+      
       this.setState({ fakeReviews: tempData });
     } 
     else if (selected === "최신순") {
       tempData = tempData.sort((a, b) => Number(a.Date) < Number(b.Date) ? 1 : -1);
+                                          // 2020.01.01 < 2020.02.01
       this.setState({ fakeReviews: tempData });
     }
+  }
+
+  // 임시로 가짜 데이터 추가
+  handleViewMore = () => {
+    let tempData = this.state.fakeReviews.splice(0);
+    tempData.push(
+      {Name: "안뇽안뇽안뇽", Date: "2020.01.23", Rating: 10.0, Sentence: "발휘하기 목숨이 이상 구하지 행복스럽"}, 
+    );
+    this.setState({ fakeReviews: tempData });
   }
 
   render() {
@@ -65,7 +78,7 @@ class DetailReviews extends Component {
           />
         )}
         <ViewMore>
-          <MoreButton>리뷰 전체보기</MoreButton>
+          <MoreButton onClick={this.handleViewMore}>리뷰 전체보기</MoreButton>
         </ViewMore>
       </Wrapper>
     )
