@@ -43,6 +43,10 @@ class RecommendedPlaceContainer extends Component {
       isSelectedAllList: true,
     } 
   }
+  
+  componentDidMount() {
+    this.setState({ scrollHeight: this.myRef.current.clientHeight });
+  }
 
   handleInfiniteScroll = () => {
     const scrollTop = this.myRef.current.scrollTop;
@@ -110,6 +114,7 @@ class RecommendedPlaceContainer extends Component {
         <RecommendedPlaces 
           onScroll={this.handleInfiniteScroll}
           ref={this.myRef}
+          originalHeight={this.state.scrollHeight}
         >
           {this.state.isSelectedAllList && 
           this.state.fakeAllList.map((item, idx) => 
@@ -148,6 +153,7 @@ class RecommendedPlaceContainer extends Component {
 export default RecommendedPlaceContainer;
 
 const RecommendedPlaces = styled.div`
-  height: 698px;
+  height: 100vh;
+  height: ${props => `${props.originalHeight - 101}` + "px"};
   overflow: scroll;
 `
