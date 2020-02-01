@@ -68,10 +68,13 @@ const StyledInput = styled.input.attrs({
 `;
 
 
-const InputText = ({placeholder, label, size, ...rest}) => {
+const InputText = ({placeholder, label, size, isLabel, ...rest}) => {
+  let inputLabel;
+  if(isLabel === false) { inputLabel = null }
+  else { inputLabel = label }
   return (
     <StyledLabel size={size}>
-      {label}
+        {inputLabel}
       <StyledInput placeholder={placeholder} size={size} {...rest}/>
     </StyledLabel>
   )
