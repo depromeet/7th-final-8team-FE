@@ -12,20 +12,20 @@ class RecommendedPlaceContainer extends Component {
     // TODO: API call로 데이터 얻어야 함.
     this.state = {
       fakeAllList : [
-        {type: '관광지', name: '섭지코지', rating: 4.3, numberOfReviews: 7, picture:'#1abc9c'}, 
-        {type: '관광지', name: '동백키친', rating: 4.1, numberOfReviews: 6, picture:'#1abc9c'}, 
-        {type: '관광지', name: '이런 곳', rating: 3.9, numberOfReviews: 5, picture:'#1abc9c'}, 
-        {type: '맛집', name: '섭지코지', rating: 4.3, numberOfReviews: 7, picture:'#2ecc71'}, 
-        {type: '맛집', name: '동백키친', rating: 4.1, numberOfReviews: 6, picture:'#2ecc71'}, 
-        {type: '맛집', name: '이런 곳', rating: 3.9, numberOfReviews: 5, picture:'#2ecc71'}, 
-        {type: '카페', name: '섭지코지', rating: 4.3, numberOfReviews: 7, picture:'#3498db'}, 
-        {type: '카페', name: '동백키친', rating: 4.1, numberOfReviews: 6, picture:'#3498db'}, 
-        {type: '카페', name: '이런 곳', rating: 3.9, numberOfReviews: 5, picture:'#3498db'}, 
+        {type: '관광', name: '섭지코지', rating: 4.3, numberOfReviews: 7, picture:'#1abc9c', km: 10,}, 
+        {type: '관광', name: '동백키친', rating: 4.1, numberOfReviews: 6, picture:'#1abc9c', km: 10,}, 
+        {type: '관광', name: '이런 곳', rating: 3.9, numberOfReviews: 5, picture:'#1abc9c', km: 10,}, 
+        {type: '맛집', name: '섭지코지', rating: 4.3, numberOfReviews: 7, picture:'#2ecc71', km: 10,}, 
+        {type: '맛집', name: '동백키친', rating: 4.1, numberOfReviews: 6, picture:'#2ecc71', km: 10,}, 
+        {type: '맛집', name: '이런 곳', rating: 3.9, numberOfReviews: 5, picture:'#2ecc71', km: 10,}, 
+        {type: '카페', name: '섭지코지', rating: 4.3, numberOfReviews: 7, picture:'#3498db', km: 10,}, 
+        {type: '카페', name: '동백키친', rating: 4.1, numberOfReviews: 6, picture:'#3498db', km: 10,}, 
+        {type: '카페', name: '이런 곳', rating: 3.9, numberOfReviews: 5, picture:'#3498db', km: 10,}, 
       ], 
       fakeTouristAttractionList : [
-        {type: '관광지', name: '섭지코지', rating: 4.3, numberOfReviews: 7, picture:'#1abc9c'}, 
-        {type: '관광지', name: '동백키친', rating: 4.1, numberOfReviews: 6, picture:'#1abc9c'}, 
-        {type: '관광지', name: '이런 곳', rating: 3.9, numberOfReviews: 5, picture:'#1abc9c'}, 
+        {type: '관광', name: '섭지코지', rating: 4.3, numberOfReviews: 7, picture:'#1abc9c'}, 
+        {type: '관광', name: '동백키친', rating: 4.1, numberOfReviews: 6, picture:'#1abc9c'}, 
+        {type: '관광', name: '이런 곳', rating: 3.9, numberOfReviews: 5, picture:'#1abc9c'}, 
       ],
       fakeRestaurantList : [
         {type: '맛집', name: '섭지코지', rating: 4.3, numberOfReviews: 7, picture:'#2ecc71'}, 
@@ -123,7 +123,8 @@ class RecommendedPlaceContainer extends Component {
               name={item.name}
               rating={item.rating}
               numberOfReviews={item.numberOfReviews}
-              
+              km={item.km}
+
               // TODO: 색깔에서 이미지 주소로 수정
               picture={item.picture}
   
@@ -156,4 +157,5 @@ const RecommendedPlaces = styled.div`
   height: 100vh;
   height: ${props => `${props.originalHeight - 101}` + "px"};
   overflow: scroll;
+  overflow-x: hidden;
 `
