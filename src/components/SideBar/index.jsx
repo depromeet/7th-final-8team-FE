@@ -33,7 +33,6 @@ class SideBar extends Component {
 const Wrapper = styled.div`
   width: 400px;
   height: 100vh;
-  border: 1px solid black;
   position: relative;
   left: ${props => props.isFolded ? "-400px" : ""};
 `
