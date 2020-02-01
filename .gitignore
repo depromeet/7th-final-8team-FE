@@ -28,4 +28,4 @@ yarn-error.log*
 .env
 
 # 용도 폐기된 컴포넌트
-src/components/PlaceCard/PlaceCard.jsx
+/src/components/PlaceCard/
