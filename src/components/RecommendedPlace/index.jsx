@@ -1,12 +1,16 @@
 import React, { Fragment } from 'react';
 import styled, { css } from 'styled-components';
+import bookmark from '../../images/bookmark.png';
 
 function RecommendedPlace({ placeData, size }) {
   const { type, name, rating, numberOfReviews, km, picture, } = placeData;
 	return (
     <Wrapper size={size}>
       <Wrap>
-        <Type>{type}</Type>
+        <FirstRow>
+          <Type>{type}</Type>
+          <BookMark />
+        </FirstRow>
         <Name>{name}</Name>
         <Row>
           <StarRating />
@@ -50,6 +54,19 @@ const Wrapper = styled.div`
 
 const Wrap = styled.div`
   padding: 20px;
+`
+
+const FirstRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const BookMark = styled.div`
+  width: 20px;
+  height: 24px;
+  background-image: url(${bookmark});
+  background-size: cover;
+  cursor: pointer;
 `
 
 const Type = styled.div`

@@ -2,6 +2,7 @@ import React, { Fragment, Component } from 'react';
 import RecommendedPlaceContainer from 'containers/RecommendedPlaceContainer';
 import styled from 'styled-components';
 import logo from 'images/logo.gif';
+import Cramp from 'components/Cramp';
 
 class SideBar extends Component {
   constructor(props) {
@@ -25,9 +26,14 @@ class SideBar extends Component {
       <Wrapper isFolded={this.state.isClickedFoldBtn}>
         <Wrap>
           <Logo />
-          <FoldButton onClick={this.handleFoldBtn}>{"<<"}</FoldButton>
+            <FoldBtn onClick={this.handleFoldBtn}>
+              <Cramp />
+            </FoldBtn>
         </Wrap>
-        {this.state.isClickedFoldBtn && <MoreButton onClick={this.handleMoreBtn}>{">>"}</MoreButton>}
+        {this.state.isClickedFoldBtn && 
+        <MoreBtn onClick={this.handleMoreBtn}>
+          <Cramp />
+        </MoreBtn>}
         <RecommendedPlaceContainer />
       </Wrapper>
     )
@@ -58,16 +64,27 @@ const Logo = styled.div`
   background-size: cover;
 `
 
-const FoldButton = styled.div`
+const FoldBtn = styled.div`
   display: flex;
-  flex-direction: row-reverse;
+  height: fit-content;
   cursor: pointer;
 `
 
-const MoreButton = styled.div`
+const MoreBtn = styled.div`
   position: relative;
-  left: 405px;
+  left: 400px;
+  bottom: 54px;
+  padding-top: 22px;
+  box-sizing: border-box;
   cursor: pointer;
+  display: flex;
+  transform: rotate(180deg);
+  width: 24px;
+  height: 52px;
+  justify-content: center;
+  background-color: #fefefe;
+  box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.22);
+  border-radius: 2px 0 0 2px;
 `
 
 export default SideBar;
