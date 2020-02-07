@@ -155,7 +155,7 @@ export default RecommendedPlaceContainer;
 
 const RecommendedPlaces = styled.div`
   height: 100vh;
-  height: ${props => `${props.originalHeight - 101}` + "px"};
+  height: ${props => `${props.originalHeight - 142}` + "px"};
   overflow: scroll;
   overflow-x: hidden;
 `

@@ -63,7 +63,6 @@ const ModalContainer = styled.div`
   background-color: rgba(0,0,0,0.16);
   position: absolute;
   top: 0;
-  display: flex;
   justify-content: center;
   display: ${props => props.isClickedLoginBtn ? "flex" : "none"};
 `
@@ -78,6 +77,7 @@ const Modal = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   padding: 65px 52px 112px 52px;
+  z-index: 1;
 `
 
 const CloseBtn = styled.span`

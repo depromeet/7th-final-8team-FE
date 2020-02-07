@@ -33,9 +33,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 3px auto 30px auto;
-  /* margin-top: 3px;
-  margin-bottom: 30px;
-  margin: 0 auto; */
   box-shadow: 0px 2px 4px rgba(34, 34, 34, 0.2), 0px 1px 10px rgba(34, 34, 34, 0.12), 0px 4px 5px rgba(196, 196, 196, 0.14);
   border-radius: 20px;
   overflow: hidden;
@@ -129,9 +126,9 @@ const ViewDetails = styled.div`
 
 const Picture = styled.div`
   width: ${props => {
-    if (props.type === "관광") return "288px";
-    else if (props.type === "맛집") return "423px";
-    else if (props.type === "카페") return "441px";
+    if (props.type === "관광") return "80%";
+    else if (props.type === "맛집") return "117.5%"; // 423px
+    else if (props.type === "카페") return "122.5%"; // 441px
   }};
   height: ${props => {
     if (props.type === "카페") return "221px";
@@ -146,7 +143,7 @@ const Picture = styled.div`
     else if (props.type === "카페") return "20px 0 220.5px 220.5px";
   }};
   position: relative;
-  left: 72px;
+  left: 20%;
 `
 
 export default RecommendedPlace;
