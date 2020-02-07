@@ -1,11 +1,16 @@
 import React, { Fragment } from 'react';
 import styled, { css } from 'styled-components';
+import bookmark from '../../images/bookmark.png';
 
-function RecommendedPlace({ type, name, rating, numberOfReviews, picture, km }) {
+function RecommendedPlace({ placeData, size }) {
+  const { type, name, rating, numberOfReviews, km, picture, } = placeData;
 	return (
-    <Wrapper>
+    <Wrapper size={size}>
       <Wrap>
-        <Type>{type}</Type>
+        <FirstRow>
+          <Type>{type}</Type>
+          <BookMark />
+        </FirstRow>
         <Name>{name}</Name>
         <Row>
           <StarRating />
@@ -28,14 +33,20 @@ function RecommendedPlace({ type, name, rating, numberOfReviews, picture, km }) 
 
 const Wrapper = styled.div`
   box-sizing: border-box;
-  width: 360px;
-  height: 346px;
+  width: ${props => {
+    if (props.size === "big") return "360px";
+    else if (props.size === "medium") return "320px";
+    else if (props.size === "small") return "227px";
+    else console.log("사이즈를 잘못 넣으셨습니다. big, medium, small만 가능합니다.");
+  }};
+  height: ${props => {
+    if (props.size === "big") return "346px";
+    else if (props.size === "medium" || "small") return "268px";
+    else console.log("사이즈를 잘못 넣으셨습니다. big, medium, small만 가능합니다.");
+  }};
   display: flex;
   flex-direction: column;
   margin: 3px auto 30px auto;
-  /* margin-top: 3px;
-  margin-bottom: 30px;
-  margin: 0 auto; */
   box-shadow: 0px 2px 4px rgba(34, 34, 34, 0.2), 0px 1px 10px rgba(34, 34, 34, 0.12), 0px 4px 5px rgba(196, 196, 196, 0.14);
   border-radius: 20px;
   overflow: hidden;
@@ -43,6 +54,19 @@ const Wrapper = styled.div`
 
 const Wrap = styled.div`
   padding: 20px;
+`
+
+const FirstRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const BookMark = styled.div`
+  width: 20px;
+  height: 24px;
+  background-image: url(${bookmark});
+  background-size: cover;
+  cursor: pointer;
 `
 
 const Type = styled.div`
@@ -129,9 +153,9 @@ const ViewDetails = styled.div`
 
 const Picture = styled.div`
   width: ${props => {
-    if (props.type === "관광") return "288px";
-    else if (props.type === "맛집") return "423px";
-    else if (props.type === "카페") return "441px";
+    if (props.type === "관광") return "80%";
+    else if (props.type === "맛집") return "117.5%";
+    else if (props.type === "카페") return "122.5%";
   }};
   height: ${props => {
     if (props.type === "카페") return "221px";
@@ -146,7 +170,7 @@ const Picture = styled.div`
     else if (props.type === "카페") return "20px 0 220.5px 220.5px";
   }};
   position: relative;
-  left: 72px;
+  left: 20.5%;
 `
 
 export default RecommendedPlace;

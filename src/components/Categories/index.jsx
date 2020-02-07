@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 `
 
 const Category = styled.div`
-  margin-right: 50px;
+  margin-right: 36px;
   cursor: pointer;
   height: 25px;
   font-family: SpoqaHanSans;
