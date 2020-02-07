@@ -1,6 +1,6 @@
 import React from 'react';
 import SideBar from 'components/SideBar';
-import Map from 'containers/KakaoMapContainer';
+// import Map from 'containers/KakaoMapContainer';
 import LoginModal from 'components/LoginModal';
 
 function Home() {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import DetailReview from 'components/DetailReview';
+import select from 'images/select.png';
 
 class DetailReviews extends Component {
   constructor(props) {
@@ -62,10 +63,13 @@ class DetailReviews extends Component {
     return (
       <Wrapper>
         <Header>
-          <Sort onChange={e => this.handleChangeSelected(e)}>
-            <Option value={"평점높은순"}>평점높은순</Option>
-            <Option value={"최신순"}>최신순</Option>
-          </Sort>
+          <Select>
+            <Sort onChange={e => this.handleChangeSelected(e)}>
+              <Option value={"평점높은순"}>평점높은순</Option>
+              <Option value={"최신순"}>최신순</Option>
+            </Sort>
+            <SortBtn />
+          </Select>
           <PuppleCircle>
             <WriteReivew>리뷰쓰기</WriteReivew>
           </PuppleCircle>
@@ -116,6 +120,25 @@ const Sort = styled.select`
   background-color: white;
   position: relative;
   top: 8px;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  outline: none;
+`
+
+const SortBtn = styled.div`
+  width: 10px;
+  height: 5px;
+  background-image: url(${select});
+  background-size: cover;
+  position: relative;
+  top: 14px;
+`
+
+const Select = styled.div`
+  display: flex;
 `
 
 const PuppleCircle = styled.div`
