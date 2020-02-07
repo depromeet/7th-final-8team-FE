@@ -59,11 +59,9 @@ class RecommendedPlaceContainer extends Component {
       // fakeRestaurantList 배열에 다음 데이터 추가
       const originalData = this.state.fakeTouristAttractionList.splice(0);
       originalData.push(
-        {type: '무', name: '한', rating: 4.3, numberOfReviews: 7, picture:'#1abc9c'}, 
-        {type: '스', name: '크', rating: 4.1, numberOfReviews: 6, picture:'#2ecc71'}, 
-        {type: '롤', name: '로', rating: 3.9, numberOfReviews: 5, picture:'#3498db'}, 
-        {type: '생', name: '성', rating: 3.7, numberOfReviews: 4, picture:'#9b59b6'}, 
-        {type: '된', name: '데이터', rating: 3.5, numberOfReviews: 3, picture:'#34495e'}, 
+        {type: '맛집', name: '라델리', rating: 4.3, numberOfReviews: 7, picture:'#1abc9c'}, 
+        {type: '관광', name: '돌바위', rating: 4.1, numberOfReviews: 6, picture:'#2ecc71'}, 
+        {type: '카페', name: '투썸', rating: 3.9, numberOfReviews: 5, picture:'#3498db'}, 
       );
       this.setState({ fakeTouristAttractionList: originalData });
     }
@@ -119,28 +117,17 @@ class RecommendedPlaceContainer extends Component {
           {this.state.isSelectedAllList && 
           this.state.fakeAllList.map((item, idx) => 
             <RecommendedPlace 
-              type={item.type}
-              name={item.name}
-              rating={item.rating}
-              numberOfReviews={item.numberOfReviews}
-              km={item.km}
+              placeData={item}
+              size={"big"}
 
-              // TODO: 색깔에서 이미지 주소로 수정
-              picture={item.picture}
-  
               // TODO: 원래 키값에 인덱스 넣으면 안됨. 바꿔야함.
               key={idx}
           />)}
           {this.state.isSelectedTouristAttraction && 
           this.state.fakeTouristAttractionList.map((item, idx) => 
             <RecommendedPlace 
-              type={item.type}
-              name={item.name}
-              rating={item.rating}
-              numberOfReviews={item.numberOfReviews}
-              
-              // TODO: 색깔에서 이미지 주소로 수정
-              picture={item.picture}
+              placeData={item}
+              size={"small"}
   
               // TODO: 원래 키값에 인덱스 넣으면 안됨. 바꿔야함.
               key={idx}

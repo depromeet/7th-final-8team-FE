@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
 import styled, { css } from 'styled-components';
 
-function RecommendedPlace({ type, name, rating, numberOfReviews, picture, km }) {
+function RecommendedPlace({ placeData, size }) {
+  const { type, name, rating, numberOfReviews, km, picture, } = placeData;
 	return (
-    <Wrapper>
+    <Wrapper size={size}>
       <Wrap>
         <Type>{type}</Type>
         <Name>{name}</Name>
@@ -28,8 +29,17 @@ function RecommendedPlace({ type, name, rating, numberOfReviews, picture, km }) 
 
 const Wrapper = styled.div`
   box-sizing: border-box;
-  width: 360px;
-  height: 346px;
+  width: ${props => {
+    if (props.size === "big") return "360px";
+    else if (props.size === "medium") return "320px";
+    else if (props.size === "small") return "227px";
+    else console.log("사이즈를 잘못 넣으셨습니다. big, medium, small만 가능합니다.");
+  }};
+  height: ${props => {
+    if (props.size === "big") return "346px";
+    else if (props.size === "medium" || "small") return "268px";
+    else console.log("사이즈를 잘못 넣으셨습니다. big, medium, small만 가능합니다.");
+  }};
   display: flex;
   flex-direction: column;
   margin: 3px auto 30px auto;
@@ -127,8 +137,8 @@ const ViewDetails = styled.div`
 const Picture = styled.div`
   width: ${props => {
     if (props.type === "관광") return "80%";
-    else if (props.type === "맛집") return "117.5%"; // 423px
-    else if (props.type === "카페") return "122.5%"; // 441px
+    else if (props.type === "맛집") return "117.5%";
+    else if (props.type === "카페") return "122.5%";
   }};
   height: ${props => {
     if (props.type === "카페") return "221px";
@@ -143,7 +153,7 @@ const Picture = styled.div`
     else if (props.type === "카페") return "20px 0 220.5px 220.5px";
   }};
   position: relative;
-  left: 20%;
+  left: 20.5%;
 `
 
 export default RecommendedPlace;
