@@ -22,7 +22,7 @@ const colorStyles = css`
 const sizes = {
   large: {height:'3rem',fontSize:'1.25rem',},
   medium: {height:'2.25rem',fontSize:'1rem',},
-  small: {height:'1.75rem',fontSize:'0.875rem',},
+  small: {height:'70px',fontSize:'14px',lineHeight:'21px'},
 };
 const sizeStyles = css`
   /* 크기 */
@@ -37,12 +37,15 @@ const StyledButton = styled.button`
 	display: inline-flex;
 	outline: none;
 	border: none;
-	border-radius: 4px;
+	border-radius: 100px;
+	box-shadow: 0px 1px 10px rgba(72, 80, 176, 0.12), 0px 4px 5px rgba(72, 80, 176, 0.14), 0px 4px 4px rgba(72, 80, 176, 0.25), inset 0px 2px 4px rgba(255, 255, 255, 0.24);
 	color: white;
 	font-weight: bold;
 	cursor: pointer;
-	padding-left: 1rem;
-	padding-right: 1rem;
+	padding: 8px 16px;
+	white-space:nowrap;
+	letter-spacing: -0.55px;
+
 
   /* 크기 */
   ${sizeStyles}

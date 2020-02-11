@@ -36,7 +36,7 @@ const Review = styled.div`
   display: flex;
   padding: 40px;
   box-sizing: border-box;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #efefef;
 `
 
 const Profile = styled.div`
@@ -54,6 +54,13 @@ const Rating = styled.div`
 `
 
 const Number = styled.div`
+  width: 27px;
+  height: 27px;
+  font-family: SpoqaHanSans;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: -0.25px;
+  color: var(--00-background-dark);
 `
 
 const Stars = styled.div`
@@ -70,6 +77,11 @@ const Star = styled.div`
 const Sentence = styled.div`
   max-width: 513px;
   margin-top: 20px;
+  font-family: SpoqaHanSans;
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: -0.55px;
+  color: var(--00-background-dark);
 `
 
 const Picture = styled.div`
@@ -86,9 +98,22 @@ const ReviewerInfo = styled.div`
 
 const UserName = styled.div`
   width: fit-content;
-  height: 27px;
+  height: fit-content;
+  font-family: SpoqaHanSans;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: -0.25px;
+  color: #191919;
 `
 
-const BeWrittenDate = styled.div``
+const BeWrittenDate = styled.div`
+  width: 59px;
+  height: 20px;
+  font-family: SpoqaHanSans;
+  font-size: 12px;
+  line-height: 1.67;
+  letter-spacing: -0.55px;
+  color: #191919;
+`
 
 export default DetailReview;

@@ -1,6 +1,8 @@
 import React, { Fragment, Component } from 'react';
 import RecommendedPlaceContainer from 'containers/RecommendedPlaceContainer';
 import styled from 'styled-components';
+import logo from 'images/logo.gif';
+import Cramp from 'components/Cramp';
 
 class SideBar extends Component {
   constructor(props) {
@@ -22,31 +24,67 @@ class SideBar extends Component {
   render() {
     return (
       <Wrapper isFolded={this.state.isClickedFoldBtn}>
-        <FoldButton onClick={this.handleFoldBtn}>{"<<"}</FoldButton>
-        {this.state.isClickedFoldBtn && <MoreButton onClick={this.handleMoreBtn}>{">>"}</MoreButton>}
+        <Wrap>
+          <Logo />
+            <FoldBtn onClick={this.handleFoldBtn}>
+              <Cramp />
+            </FoldBtn>
+        </Wrap>
+        {this.state.isClickedFoldBtn && 
+        <MoreBtn onClick={this.handleMoreBtn}>
+          <Cramp />
+        </MoreBtn>}
         <RecommendedPlaceContainer />
       </Wrapper>
     )
   }
 }
 
+
 const Wrapper = styled.div`
   width: 400px;
-  height: fit-content;
-  border: 1px solid black;
+  height: 100vh;
   position: relative;
+  padding-top: 20px;
   left: ${props => props.isFolded ? "-400px" : ""};
+  box-sizing: border-box;
 `
-const FoldButton = styled.div`
+const Wrap = styled.div`
+  width: 360px;
+  height: 40px;
   display: flex;
-  flex-direction: row-reverse;
+  justify-content: space-between;
+  margin: 0 auto;
+`
+
+const Logo = styled.div`
+  width: 108px;
+  height: 28px;
+  background-image: url(${logo});
+  background-size: cover;
+`
+
+const FoldBtn = styled.div`
+  display: flex;
+  height: fit-content;
   cursor: pointer;
 `
 
-const MoreButton = styled.div`
+const MoreBtn = styled.div`
   position: relative;
-  left: 405px;
+  left: 400px;
+  bottom: 54px;
+  padding-top: 22px;
+  box-sizing: border-box;
   cursor: pointer;
+  display: flex;
+  transform: rotate(180deg);
+  width: 24px;
+  height: 52px;
+  justify-content: center;
+  background-color: #fefefe;
+  box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.22);
+  border-radius: 2px 0 0 2px;
 `
 
 export default SideBar;
