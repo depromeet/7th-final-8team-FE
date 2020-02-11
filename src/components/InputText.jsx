@@ -29,7 +29,8 @@ const StyledLabel = styled.label`
 const sizes = {
   large: {height:'3rem',fontSize:'1.25rem',},
   medium: {height:'2.25rem',fontSize:'1rem',},
-  small: {height:'1.75rem',fontSize:'0.875rem'},
+  small: {height:'1.75rem',fontSize:'0.875rem',},
+  default: {height:'48px',fontSize:'18px',lineHeight:'27px' }
 };
 const sizeStyles = css`
   /* 크기 */
@@ -48,10 +49,11 @@ const StyledInput = styled.input.attrs({
   box-sizing:border-box;
   display: block;
   outline:none;
-  border: 1px solid #A9A9A9;
-  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(34, 34, 34, 0.2), 0px 1px 10px rgba(34, 34, 34, 0.12), 0px 4px 5px rgba(196, 196, 196, 0.14);
+  border: 0;
+  border-radius: 100px;
   color: #242729;
-  font-weight: bold;
+  letter-spacing:-0.25px;
   margin-top:0.1rem;
   padding:0 1rem 0 1rem;
   vertical-align:bottom;
