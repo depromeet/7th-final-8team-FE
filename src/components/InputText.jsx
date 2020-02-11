@@ -7,6 +7,7 @@ const labelSizes = {
   large: {fontSize:'1rem',},
   medium: {fontSize:'0.875rem',},
   small: {fontSize:'0.65rem',},
+  default: {fontSize:'12px'}
 }
 const labelSizesStyles = css`
   /* 크기 */
@@ -27,9 +28,9 @@ const StyledLabel = styled.label`
 
 // 입력창 사이즈
 const sizes = {
-  large: {height:'3rem',fontSize:'1.25rem',},
-  medium: {height:'2.25rem',fontSize:'1rem',},
-  small: {height:'1.75rem',fontSize:'0.875rem',},
+  large: {height:'3rem',fontSize:'1.25rem',lineHeight:'1.25rem'},
+  medium: {height:'2.25rem',fontSize:'1rem',lineHeight:'1rem'},
+  small: {height:'1.75rem',fontSize:'0.875rem',lineHeight:'0.875rem'},
   default: {height:'48px',fontSize:'18px',lineHeight:'27px' }
 };
 const sizeStyles = css`
@@ -37,7 +38,7 @@ const sizeStyles = css`
   ${({ size }) => css`
 		height:${sizes[size].height};
     font-size: ${sizes[size].fontSize};
-    line-height:${sizes[size].fontSize};
+    line-height:${sizes[size].lineHeight};
   `}
 `;
 // 입력창 컴포넌트
