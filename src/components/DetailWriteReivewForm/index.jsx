@@ -25,43 +25,74 @@ class DetailWriteReviewForm extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
-      <Box>
-        <Title>
-          <FirstText>와이키키 절벽</FirstText>
-        </Title>
-        <Stars>
-          <Star />
-          <Star />
-          <Star />
-          <Star />
-          <Star />
-        </Stars>
-        <Pharse>
-          <SecondText>방문한 장소를 평가해주세요!</SecondText>
-        </Pharse>
-        <Contents>
-          <Input value={this.state.reviewContents} onChange={e => {this.handleReivewContentsChange(e)}} placeholder={"와이키키 절벽에 다녀온 경험을 공유해주세요."}/>
-        </Contents>
-        <TextLength>{`${this.state.reviewLength}자 | 최소 20자`}</TextLength>
-        <Footer>
-          <Cancel>
-            <CancelText>취소</CancelText>
-          </Cancel>
-          <Confirm>
-            <ConfirmText>확인</ConfirmText>
-          </Confirm>
-        </Footer>
-      </Box>
+      <>
+        <Background />
+        <Wrapper>
+          <Box>
+            <Title>
+              <FirstText>와이키키 절벽</FirstText>
+            </Title>
+            <Stars>
+              <Star />
+              <Star />
+              <Star />
+              <Star />
+              <Star />
+            </Stars>
+            <Pharse>
+              <SecondText>방문한 장소를 평가해주세요!</SecondText>
+            </Pharse>
+            <Contents>
+              <Input value={this.state.reviewContents} onChange={e => {this.handleReivewContentsChange(e)}} placeholder={"와이키키 절벽에 다녀온 경험을 공유해주세요."}/>
+            </Contents>
+            <TextLength>{`${this.state.reviewLength}자 | 최소 20자`}</TextLength>
+            <Footer>
+              <Cancel onClick={() => {this.props.handleToFalseWriteReivew()}}>
+                <CancelText>취소</CancelText>
+              </Cancel>
+              <Confirm>
+                <ConfirmText>확인</ConfirmText>
+              </Confirm>
+            </Footer>
+          </Box>
+        </Wrapper>
+      </>
     )
   }
 }
 
+const Background = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  opacity: 0.22;
+  background-color: #000000;
+`
+
+const Wrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+`
+
 const Box = styled.div`
+  margin: auto 0;
   width: 580px;
   height: 600px;
   border-radius: 20px;
   box-shadow: 4px 4px 12px 0 rgba(0, 0, 0, 0.22);
+  opacity: 1;
+  background-color: white;
 `
 
 const Title = styled.div`
@@ -136,6 +167,10 @@ const Input = styled.textarea`
   resize: none;
   background-color: #fbfbfb;
 
+  :focus {
+    outline: none;
+  }
+
   ::placeholder {
     color: #999999;
   }
@@ -159,6 +194,7 @@ const Footer = styled.div`
   width: 580px;
   height: 60px;
   display: flex;
+  cursor: pointer;
 `
 
 const Cancel = styled.div`
