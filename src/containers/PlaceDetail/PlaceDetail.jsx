@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useState } from 'react';
+import PlaceDetailInfoTab from '../PlaceDetailInfoTab/PlaceDetailInfoTab'
 
 const ArticlePlaceDetail = styled.article`
   align-items: center; 
@@ -7,7 +9,6 @@ const ArticlePlaceDetail = styled.article`
   box-shadow: 0px 3px 5px rgba(196, 196, 196, 0.2), 0px 1px 18px rgba(34, 34, 34, 0.12), 0px 6px 10px rgba(196, 196, 196, 0.14);
   width:800px;
   margin: 0 auto;
-  padding: 40px 20px;
 `;
 
 const DivInfoTab = styled.div`
@@ -89,7 +90,27 @@ const NavTabs = styled.nav`
   }
 `;
 
+const SectionTabBody = styled.section`
+  padding:40px 20px;
+`;
+
 function PlaceDetail({type, name, rating, numberOfReviews, km,}) {
+  const [tab, setTab] = useState('info') // info, review, recommend
+  let tabBody;
+  if (tab === 'info'){
+    tabBody = (<PlaceDetailInfoTab/>);
+  } else if (tab === 'review'){
+    // review 탭
+    tabBody = 'review 탭'
+  } else {
+    // recommend 탭
+    tabBody = 'recommend 탭'
+  }
+  const onClick=e=>{
+    console.dir(e.target);
+    setTab(e.target.dataset.tab);
+    console.log('tab',tab)
+  }
   return (
     <ArticlePlaceDetail>
       <DivInfoTab>
@@ -109,21 +130,25 @@ function PlaceDetail({type, name, rating, numberOfReviews, km,}) {
         <ul>
           <li>
             {/* 정보 탭 버튼 */}
-            <button>정보</button>
+            <button data-tab="info" onClick={e=>onClick(e)}>정보</button>
           </li>
           <li>
             {/* 리뷰 탭 버튼 */}
-            <button>리뷰</button>
+            <button data-tab="review" onClick={e=>onClick(e)}>리뷰</button>
           </li>
           <li>
             {/* 추천 탭 버튼 */}
-            <button>추천</button>
+            <button data-tab="recommend" onClick={e=>onClick(e)}>추천</button>
           </li>
         </ul>
       </NavTabs>
+      <SectionTabBody>
+        {tabBody}
+      </SectionTabBody>
     </ArticlePlaceDetail>
   )
-}
+};
+
 PlaceDetail.defaultProps = {
   type:"관광",
   name:"와인키키절벽",
