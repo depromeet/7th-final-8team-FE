@@ -44,9 +44,8 @@ const Wrapper = styled.div`
     else if (props.size === "medium" || "small") return "268px";
     else console.log("사이즈를 잘못 넣으셨습니다. big, medium, small만 가능합니다.");
   }};
-  display: flex;
-  flex-direction: column;
-  margin: 3px auto 30px auto;
+  display: inline-block;
+  margin: 3px 20px 30px 20px;
   box-shadow: 0px 2px 4px rgba(34, 34, 34, 0.2), 0px 1px 10px rgba(34, 34, 34, 0.12), 0px 4px 5px rgba(196, 196, 196, 0.14);
   border-radius: 20px;
   overflow: hidden;
