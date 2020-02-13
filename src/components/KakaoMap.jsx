@@ -36,7 +36,7 @@ function KakaoMap({datas, centerLatLng}) {
 	
   return (
     <>
-      <div id="map" style={{width:'500px',height:'400px'}}></div>
+      <div id="map" style={{width: '100vw', height: '100vh', position: 'absolute', top: '0', 'z-index' :'0'}}></div>
     </>
   )
 }
