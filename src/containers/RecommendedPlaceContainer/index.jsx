@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
-import RecommendedPlace from 'components/RecommendedPlace';
-import Categories from 'components/Categories';
+import RecommendedPlace from '../../components/RecommendedPlace';
+import Categories from '../../components/Categories';
 
 class RecommendedPlaceContainer extends Component {
   constructor(props) {

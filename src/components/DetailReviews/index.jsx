@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import DetailReview from 'components/DetailReview';
-import select from 'images/select.png';
+import DetailReview from '../DetailReview';
+import select from '../../images/select.png';
 import DetailWriteReviewForm from '../DetailWriteReivewForm';
 
 class DetailReviews extends Component {

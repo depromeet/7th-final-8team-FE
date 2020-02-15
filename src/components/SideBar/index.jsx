@@ -1,8 +1,8 @@
 import React, { Fragment, Component } from 'react';
-import RecommendedPlaceContainer from 'containers/RecommendedPlaceContainer';
+import RecommendedPlaceContainer from '../../containers/RecommendedPlaceContainer';
 import styled from 'styled-components';
-import logo from 'images/logo.gif';
-import Cramp from 'components/Cramp';
+import logo from '../../images/logo.gif';
+import Cramp from '../Cramp';
 
 class SideBar extends Component {
   constructor(props) {
