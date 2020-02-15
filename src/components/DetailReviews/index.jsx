@@ -116,7 +116,6 @@ const Header = styled.div`
   width: 760px;
   height: 42px;
   justify-content: space-between;
-  padding: 2px 8px 3px 20px;
   box-sizing: border-box;
 `
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import KakaoLogin from 'components/KakaoLogin';
+import IsLoggedInUserInfo from '../IsLoggedInUserInfo';
 
 class LoginModal extends Component {
   constructor(props) {
@@ -8,6 +9,8 @@ class LoginModal extends Component {
 
     this.state = {
       isClickedLoginBtn: false,
+      isLoggedIn: false,
+      isClickedUserInfo: false,
     }
   }
 
@@ -18,13 +21,25 @@ class LoginModal extends Component {
   handleLoginToFalse = () => {
     this.setState({ isClickedLoginBtn: false });
   }
+
+  loginBtn = () => {
+    return (
+      <LoginContainer isUsedMainPage={this.props.isMainPage} onClick={this.handleLogin}>
+        <Login>로그인</Login>
+      </LoginContainer>
+    )
+  }
+
+  // userInfo = () => {
+  //   return (
+      
+  //   )
+  // }
   
   render() {
     return (
       <Wrapper>
-        <LoginContainer isUsedMainPage={this.props.isMainPage}>
-          <Login onClick={this.handleLogin}>로그인</Login>
-        </LoginContainer>
+        {this.state.isLoggedIn ? this.userInfo() : this.loginBtn()}
         <ModalContainer isClickedLoginBtn={this.state.isClickedLoginBtn}>
           <Modal>
             <CloseBtn onClick={this.handleLoginToFalse}>x</CloseBtn>
@@ -34,6 +49,7 @@ class LoginModal extends Component {
             </KakaoLoginContainer>
           </Modal>
         </ModalContainer>
+        {this.state.isLoggedIn && this.state.isClickedUserInfo && <IsLoggedInUserInfo />}
       </Wrapper>
     );
   }

@@ -23,6 +23,8 @@ const DivInfoTab = styled.div`
   position:relative;
   /* 마진 붕괴 방지 위해 margin-top 부분에 1px 빠짐 */
   margin:39px 20px 40px 20px;
+  /* 로그인 창을 뚫고 나와서 임시로 설정 */
+  z-index: -1;
 
   span {
     /* 타입 */

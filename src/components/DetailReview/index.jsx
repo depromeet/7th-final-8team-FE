@@ -34,7 +34,8 @@ class DetailReview extends Component {
 
 const Review = styled.div`
   display: flex;
-  padding: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   box-sizing: border-box;
   border-bottom: 1px solid #efefef;
 `
