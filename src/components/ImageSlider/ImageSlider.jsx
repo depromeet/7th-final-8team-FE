@@ -1,11 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const DivImageItem = styled.div`
-  width:420px;
+const LiImageItem = styled.li`
+    width:420px;
+  div {
+    height:420px;
+    background: url(${props => props.url ? props.url : "https://picsum.photos/420/420"});
+  }
+`;
+
+const UlImageList = styled.ul`
+  /* overflow:hidden; */
   height:420px;
-  float:left;
-  background: url(${props => props.url ? props.url : "https://picsum.photos/420/420"});
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
 `;
 
 function ImageSlider() {
@@ -18,11 +27,11 @@ function ImageSlider() {
     "https://picsum.photos/420/420",
     "https://picsum.photos/420/420",
   ];
-  const imgSlider = imgUrlList.map(url=><DivImageItem url={url}/>);
+  const imgSlider = imgUrlList.map((url,idx)=><LiImageItem key={idx}><div></div></LiImageItem>);
   return (
-    <>
+    <UlImageList>
       {imgSlider}
-    </>
+    </UlImageList>
   )
 }
 
