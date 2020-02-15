@@ -7,6 +7,7 @@ const labelSizes = {
   large: {fontSize:'1rem',},
   medium: {fontSize:'0.875rem',},
   small: {fontSize:'0.65rem',},
+  default: {fontSize:'12px'}
 }
 const labelSizesStyles = css`
   /* 크기 */
@@ -27,16 +28,17 @@ const StyledLabel = styled.label`
 
 // 입력창 사이즈
 const sizes = {
-  large: {height:'3rem',fontSize:'1.25rem',},
-  medium: {height:'2.25rem',fontSize:'1rem',},
-  small: {height:'1.75rem',fontSize:'0.875rem'},
+  large: {height:'3rem',fontSize:'1.25rem',lineHeight:'1.25rem'},
+  medium: {height:'2.25rem',fontSize:'1rem',lineHeight:'1rem'},
+  small: {height:'1.75rem',fontSize:'0.875rem',lineHeight:'0.875rem'},
+  default: {height:'48px',fontSize:'18px',lineHeight:'27px' }
 };
 const sizeStyles = css`
   /* 크기 */
   ${({ size }) => css`
 		height:${sizes[size].height};
     font-size: ${sizes[size].fontSize};
-    line-height:${sizes[size].fontSize};
+    line-height:${sizes[size].lineHeight};
   `}
 `;
 // 입력창 컴포넌트
@@ -48,10 +50,11 @@ const StyledInput = styled.input.attrs({
   box-sizing:border-box;
   display: block;
   outline:none;
-  border: 1px solid #A9A9A9;
-  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(34, 34, 34, 0.2), 0px 1px 10px rgba(34, 34, 34, 0.12), 0px 4px 5px rgba(196, 196, 196, 0.14);
+  border: 0;
+  border-radius: 100px;
   color: #242729;
-  font-weight: bold;
+  letter-spacing:-0.25px;
   margin-top:0.1rem;
   padding:0 1rem 0 1rem;
   vertical-align:bottom;
@@ -68,10 +71,13 @@ const StyledInput = styled.input.attrs({
 `;
 
 
-const InputText = ({placeholder, label, size, ...rest}) => {
+const InputText = ({placeholder, label, size, isLabel, ...rest}) => {
+  let inputLabel;
+  if(isLabel === false) { inputLabel = null }
+  else { inputLabel = label }
   return (
     <StyledLabel size={size}>
-      {label}
+        {inputLabel}
       <StyledInput placeholder={placeholder} size={size} {...rest}/>
     </StyledLabel>
   )
