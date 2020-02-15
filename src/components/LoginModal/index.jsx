@@ -9,7 +9,7 @@ class LoginModal extends Component {
 
     this.state = {
       isClickedLoginBtn: false,
-      isLoggedIn: false,
+      isLoggedIn: true,
       isClickedUserInfo: false,
     }
   }
@@ -22,6 +22,18 @@ class LoginModal extends Component {
     this.setState({ isClickedLoginBtn: false });
   }
 
+  handleUserInfo = () => {
+    this.setState({ isClickedUserInfo: true });
+  }
+
+  handleUserInfoToFalse = () => {
+    this.setState({ isClickedUserInfo: false });
+  }
+
+  logout = () => {
+    this.setState({ isLoggedIn: false });
+  }
+
   loginBtn = () => {
     return (
       <LoginContainer isUsedMainPage={this.props.isMainPage} onClick={this.handleLogin}>
@@ -30,11 +42,18 @@ class LoginModal extends Component {
     )
   }
 
-  // userInfo = () => {
-  //   return (
-      
-  //   )
-  // }
+  userInfo = () => {
+    return (
+      <UserProfilePictureContainer>
+        <ProfilePicture />
+        {this.state.isClickedUserInfo ? 
+        <UserInfoCloseBtn onClick={this.handleUserInfoToFalse} /> 
+        : 
+        <UserInfoOpenBtn onClick={this.handleUserInfo} />
+        }
+      </UserProfilePictureContainer>
+    )
+  }
   
   render() {
     return (
@@ -49,11 +68,42 @@ class LoginModal extends Component {
             </KakaoLoginContainer>
           </Modal>
         </ModalContainer>
-        {this.state.isLoggedIn && this.state.isClickedUserInfo && <IsLoggedInUserInfo />}
+        {this.state.isLoggedIn && this.state.isClickedUserInfo && <IsLoggedInUserInfo logout={this.logout} />}
       </Wrapper>
     );
   }
 }
+
+const UserProfilePictureContainer = styled.div`
+  width: 44px;
+  height: 30px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+`
+
+const ProfilePicture = styled.div`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #f39c12;
+`
+
+const UserInfoOpenBtn = styled.div`
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #111111;
+  margin: auto 0;
+  cursor: pointer;
+`
+
+const UserInfoCloseBtn = styled(UserInfoOpenBtn)`
+  transform: rotate(180deg);
+`
 
 const Wrapper = styled.div`
   margin: auto 0;

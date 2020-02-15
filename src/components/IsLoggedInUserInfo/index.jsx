@@ -14,7 +14,7 @@ class IsLoggedInUserInfo extends Component {
             <Picture />
             <TextWrapper>
               <Logout>
-                <LogoutText>로그아웃</LogoutText>
+                <LogoutText onClick={this.props.logout}>로그아웃</LogoutText>
               </Logout>
               <UserName>노노플랜👻</UserName>
               <UserEmail>nonoplan@gamil.com</UserEmail>
