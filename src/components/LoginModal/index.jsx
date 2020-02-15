@@ -21,8 +21,8 @@ class LoginModal extends Component {
   
   render() {
     return (
-      <>
-        <LoginContainer>
+      <Wrapper>
+        <LoginContainer isUsedMainPage={this.props.isMainPage}>
           <Login onClick={this.handleLogin}>로그인</Login>
         </LoginContainer>
         <ModalContainer isClickedLoginBtn={this.state.isClickedLoginBtn}>
@@ -34,13 +34,17 @@ class LoginModal extends Component {
             </KakaoLoginContainer>
           </Modal>
         </ModalContainer>
-      </>
+      </Wrapper>
     );
   }
 }
 
+const Wrapper = styled.div`
+  margin: auto 0;
+`
+
 const LoginContainer = styled.div`
-  position: absolute;
+  position: ${props => props.isUsedMainPage ? "absolute" : ""};
   top: 20px;
   right: 20px;
   width: 70px;
@@ -50,6 +54,7 @@ const LoginContainer = styled.div`
   display: flex;
   justify-content: center;
   cursor: pointer;
+  z-index: 10;
 `
 
 const Login = styled.div`
@@ -61,8 +66,9 @@ const ModalContainer = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0,0,0,0.16);
-  position: absolute;
+  position: fixed;
   top: 0;
+  left: 0;
   justify-content: center;
   display: ${props => props.isClickedLoginBtn ? "flex" : "none"};
 `

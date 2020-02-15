@@ -3,6 +3,7 @@ import styled, {ThemeProvider} from 'styled-components';
 import InputText from '../../components/InputText';
 import Button from '../../components/Button';
 import logoNonoPlan from '../../assets/logoNonoPlan.gif';
+import LoginModal from '../../components/LoginModal';
 
 const HeaderContainer = styled.header`
   height:88px;
@@ -37,9 +38,10 @@ function Header() {
             style={{minWidth:"100px",maxWidth:"460px",width:"100%",margin:"0 auto"}}/>
         </DivSearchInput>
         
-        <ThemeProvider theme={{palette}}>
+        {/* <ThemeProvider theme={{palette}}>
           <Button color="purple" style={{margin:"auto 0"}}>로그인</Button>
-        </ThemeProvider>
+        </ThemeProvider> */}
+        <LoginModal />
     </HeaderContainer>
   )
 }
