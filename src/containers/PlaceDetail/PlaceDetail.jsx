@@ -9,12 +9,17 @@ const ArticlePlaceDetail = styled.article`
   box-shadow: 0px 3px 5px rgba(196, 196, 196, 0.2), 0px 1px 18px rgba(34, 34, 34, 0.12), 0px 6px 10px rgba(196, 196, 196, 0.14);
   width:800px;
   margin: 0 auto;
+  /* 자식요소 DivInfoTab의 마진 붕괴(margin collapse)를 막기 위해 */
+  /* 부모 요소인 ArticlePlaceDetail에 display:inline-block 삽입 */
+  display:inline-block;
 `;
 
 const DivInfoTab = styled.div`
   text-align:center;
-  width:100%;
   line-height:42px;
+  position:relative;
+  margin:40px 20px;
+
   span {
     /* 타입 */
     font-weight: bold;
@@ -63,6 +68,16 @@ const DivStarReviewCnt = styled.div`
   }
 `;
 
+const ButtonBookmark = styled.button`
+  position:absolute;
+  top:0;
+  right:0;
+  width:42px;
+  height:42px;
+  border:0;
+  background:red;
+`;
+
 const NavTabs = styled.nav`
   ul{
     display:flex;
@@ -107,9 +122,7 @@ function PlaceDetail({type, name, rating, numberOfReviews, km,}) {
     tabBody = 'recommend 탭'
   }
   const onClick=e=>{
-    console.dir(e.target);
     setTab(e.target.dataset.tab);
-    console.log('tab',tab)
   }
   return (
     <ArticlePlaceDetail>
@@ -125,6 +138,7 @@ function PlaceDetail({type, name, rating, numberOfReviews, km,}) {
           <div>리뷰 <span>{numberOfReviews}</span>개</div>
         </DivStarReviewCnt>
         <div>내 위치에서 {km}km</div>
+        <ButtonBookmark />
       </DivInfoTab>
       <NavTabs>
         <ul>
