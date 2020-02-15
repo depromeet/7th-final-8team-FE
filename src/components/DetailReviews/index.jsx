@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import DetailReview from 'components/DetailReview';
 import select from 'images/select.png';
+import DetailWriteReviewForm from '../DetailWriteReivewForm';
 
 class DetailReviews extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class DetailReviews extends Component {
         {Name: "필통", Date: "2020.04.10", Rating: 4.2, Sentence: "발휘하기 목숨이 이상 구하지 행복스럽"}, 
       ],
       sortBySelected: "", // 평점높은순, 최신순
+      isClickedWriteReivew: false,
     }
   }
 
@@ -33,6 +35,14 @@ class DetailReviews extends Component {
 
   handleChangeSelected = (e) => {
     this.setState({ sortBySelected: e.target.value });
+  }
+
+  handleWriteReivew = () => {
+    this.setState({ isClickedWriteReivew: true });
+  }
+
+  handleToFalseWriteReivew = () => {
+    this.setState({ isClickedWriteReivew: false });
   }
 
   sort = (selected) => {
@@ -70,7 +80,7 @@ class DetailReviews extends Component {
             </Sort>
             <SortBtn />
           </Select>
-          <PuppleCircle>
+          <PuppleCircle onClick={this.handleWriteReivew}>
             <WriteReivew>리뷰쓰기</WriteReivew>
           </PuppleCircle>
         </Header>
@@ -86,6 +96,8 @@ class DetailReviews extends Component {
         <ViewMore>
           <MoreButton onClick={this.handleViewMore}>리뷰 전체보기</MoreButton>
         </ViewMore>
+        {this.state.isClickedWriteReivew &&
+        <DetailWriteReviewForm handleToFalseWriteReivew={this.handleToFalseWriteReivew} />}
       </Wrapper>
     )
   }

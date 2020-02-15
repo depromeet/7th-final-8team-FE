@@ -48,6 +48,9 @@ const Wrapper = styled.div`
   padding-top: 20px;
   left: ${props => props.isFolded ? "-400px" : ""};
   box-sizing: border-box;
+  background-color: white;
+  box-shadow: 4px 4px 12px 0 rgba(0, 0, 0, 0.22);
+  z-index: 1;
 `
 const Wrap = styled.div`
   width: 360px;
