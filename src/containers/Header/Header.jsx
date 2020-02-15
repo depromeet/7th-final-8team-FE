@@ -6,8 +6,10 @@ import logoNonoPlan from '../../assets/logoNonoPlan.gif';
 
 const HeaderContainer = styled.header`
   height:88px;
+  max-width:1280px;
   display:flex;
   justify-content:space-around;
+  margin: 0 auto;
 `;
 const ImgLogo = styled.img`
   height: 24px;

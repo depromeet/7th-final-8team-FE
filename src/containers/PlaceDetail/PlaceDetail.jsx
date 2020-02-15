@@ -1,14 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
-import PlaceDetailInfoTab from '../PlaceDetailInfoTab/PlaceDetailInfoTab'
+import PlaceDetailInfoTab from '../PlaceDetailInfoTab/PlaceDetailInfoTab';
+import DetailReviews from '../../components/DetailReviews';
+import PlaceDetailRecommendTab from '../PlaceDetailRecommendTab/PlaceDetailRecommendTab';
 
 const ArticlePlaceDetail = styled.article`
   align-items: center; 
   border-radius:20px;
   box-shadow: 0px 3px 5px rgba(196, 196, 196, 0.2), 0px 1px 18px rgba(34, 34, 34, 0.12), 0px 6px 10px rgba(196, 196, 196, 0.14);
   width:800px;
-  margin: 0 auto;
+  margin: 0 auto 120px auto;
   /* 자식요소 DivInfoTab의 마진 붕괴(margin collapse)를 막기 위해 */
   /* 부모 요소인 ArticlePlaceDetail에 padding 삽입 */
   /* display:inline-block; */;
@@ -119,10 +121,10 @@ function PlaceDetail({type, name, rating, numberOfReviews, km,}) {
     tabBody = (<PlaceDetailInfoTab/>);
   } else if (tab === 'review'){
     // review 탭
-    tabBody = 'review 탭'
+    tabBody = (<DetailReviews/>)
   } else {
     // recommend 탭
-    tabBody = 'recommend 탭'
+    tabBody = (<PlaceDetailRecommendTab/>)
   }
   const onClick=e=>{
     setTab(e.target.dataset.tab);
