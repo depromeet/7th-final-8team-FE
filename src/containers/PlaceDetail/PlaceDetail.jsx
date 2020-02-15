@@ -19,7 +19,7 @@ const DivInfoTab = styled.div`
   text-align:center;
   line-height:42px;
   position:relative;
-  /* 마진 붕괴 방지 때문에 margin-top 부분에 1px 빠짐 */
+  /* 마진 붕괴 방지 위해 margin-top 부분에 1px 빠짐 */
   margin:39px 20px 40px 20px;
 
   span {
@@ -99,6 +99,7 @@ const NavTabs = styled.nav`
     letter-spacing: -0.25px;
     cursor: pointer;
   }
+  /* 클릭에 따른 focus, active 스타일만 이렇게 되어있는데 향후 tab 상태값에 따라서 밑줄 줘야함 */
   button:focus, button:active{
     background:none;
     border:0;
