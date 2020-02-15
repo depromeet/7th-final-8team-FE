@@ -10,15 +10,17 @@ const ArticlePlaceDetail = styled.article`
   width:800px;
   margin: 0 auto;
   /* 자식요소 DivInfoTab의 마진 붕괴(margin collapse)를 막기 위해 */
-  /* 부모 요소인 ArticlePlaceDetail에 display:inline-block 삽입 */
-  display:inline-block;
+  /* 부모 요소인 ArticlePlaceDetail에 padding 삽입 */
+  /* display:inline-block; */;
+  padding-top:1px;
 `;
 
 const DivInfoTab = styled.div`
   text-align:center;
   line-height:42px;
   position:relative;
-  margin:40px 20px;
+  /* 마진 붕괴 방지 때문에 margin-top 부분에 1px 빠짐 */
+  margin:39px 20px 40px 20px;
 
   span {
     /* 타입 */
