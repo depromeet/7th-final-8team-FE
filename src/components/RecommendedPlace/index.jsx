@@ -2,10 +2,10 @@ import React, { Fragment } from 'react';
 import styled, { css } from 'styled-components';
 import bookmark from '../../images/bookmark.png';
 
-function RecommendedPlace({ placeData, size }) {
+function RecommendedPlace({ placeData, size, ...rest }) {
   const { type, name, rating, numberOfReviews, km, picture, } = placeData;
 	return (
-    <Wrapper size={size}>
+    <Wrapper size={size} {...rest}>
       <Wrap>
         <FirstRow>
           <Type>{type}</Type>
@@ -30,10 +30,25 @@ function RecommendedPlace({ placeData, size }) {
     </Wrapper>
 	)
 }
-
+const sizes = {
+  big: {width:'360px', height:'346px', margin:'3px 20px 30px 20px'},
+  medium: {width:'346px', height:'268px', margin:'3px 20px 30px 20px'},
+  small: {width:'227px', height:'268px', margin:'3px 10px 30px 10px'},
+};
+const sizeStyles = css`
+  /* 크기 */
+  ${({ size }) => css`
+		width:${sizes[size].width};
+		height: ${sizes[size].height};
+    margin: ${sizes[size].margin};
+  `}
+`;
 const Wrapper = styled.div`
   box-sizing: border-box;
-  width: ${props => {
+  ${sizeStyles}
+  
+  /* margin: 3px 20px 30px 20px; */
+  /* width: ${props => {
     if (props.size === "big") return "360px";
     else if (props.size === "medium") return "320px";
     else if (props.size === "small") return "227px";
@@ -44,8 +59,10 @@ const Wrapper = styled.div`
     else if (props.size === "medium" || "small") return "268px";
     else console.log("사이즈를 잘못 넣으셨습니다. big, medium, small만 가능합니다.");
   }};
+  margin: ${props=>{
+    if (props.size === "small") return "3px 10px 30px 10px";
+  }} */
   display: inline-block;
-  margin: 3px 20px 30px 20px;
   box-shadow: 0px 2px 4px rgba(34, 34, 34, 0.2), 0px 1px 10px rgba(34, 34, 34, 0.12), 0px 4px 5px rgba(196, 196, 196, 0.14);
   border-radius: 20px;
   overflow: hidden;

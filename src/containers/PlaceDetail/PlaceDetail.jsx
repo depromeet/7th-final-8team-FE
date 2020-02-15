@@ -111,7 +111,7 @@ const NavTabs = styled.nav`
 `;
 
 const SectionTabBody = styled.section`
-  padding:40px 20px;
+  padding:40px 39px 40px 40px;
 `;
 
 function PlaceDetail({type, name, rating, numberOfReviews, km,}) {
