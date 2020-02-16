@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
 
@@ -15,6 +15,40 @@ const DivImageItem = styled.div`
   height:420px;
   display:inline-block;
   background: url(${props => !props.url ? "" : props.url});
+`;
+
+const directions = {
+  left: {left:'655px'},
+  right:{right:'655px'}
+}
+const directionsStyles = css`
+  /* 크기 */
+  ${({ direction }) => css`
+		left:${directions[direction].left};
+		right:${directions[direction].right};
+  `}
+`;
+const ButtonArrow = styled.button`
+  width:34px;
+  height:34px;
+  border-radius:100%;
+  background:rgba(26, 26, 26, 0.22);
+  border:0;
+  position:absolute;
+  top:198px;
+  cursor: pointer;
+  ${directionsStyles}
+  &:focus, &:active{outline:none}
+  &::after{
+    content:'';
+    width:8px;
+    height:8px;
+    display:inline-block;
+    border:0;
+    border-left:1px solid #fff;
+    border-top:1px solid #fff;
+    transform: ${props=> props.direction==="left" ? 'translateX(25%) rotate(-45deg) ' : 'translateX(-12%) rotate(135deg)'}
+  }
 `;
 
 const ImageSlider = ({datas}) =>{
@@ -36,10 +70,11 @@ const ImageSlider = ({datas}) =>{
           items={imgSlider}
           responsive={ {0: { items: 5 }} }
           dotsDisabled={true}
+          buttonsDisabled={true}
           ref={carousel}
         />
-        <button onClick={() => carousel.current.slidePrev()}>Prev button</button>
-        <button onClick={() => carousel.current.slideNext()}>Next button</button>
+        <ButtonArrow direction="left" onClick={() => carousel.current.slidePrev()}/>
+        <ButtonArrow direction="right" onClick={() => carousel.current.slideNext()}/>
       </DivContainer>
     )
 }
