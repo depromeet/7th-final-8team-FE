@@ -68,7 +68,7 @@ const ImageSlider = ({datas}) =>{
   }
   console.log('sliderItems',sliderItems)
   const handleOnDragStart = (e) => e.preventDefault()
-  const imgSlider = sliderItems.map((item,idx)=><DivImageItem key={idx} onDragStart={handleOnDragStart} url={item}>{idx}</DivImageItem>)
+  const imgSlider = sliderItems.map((item,idx)=><DivImageItem key={idx} onDragStart={handleOnDragStart} url={item}></DivImageItem>)
   const carousel = useRef();
     return (
       <DivContainer>
