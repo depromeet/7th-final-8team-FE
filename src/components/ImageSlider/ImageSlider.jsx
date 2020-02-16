@@ -6,6 +6,7 @@ import 'react-alice-carousel/lib/alice-carousel.css'
 const DivContainer = styled.div`
   position:relative;
   width:100%;
+  height:420px;
 `;
 
 const DivSlider = styled.div`
@@ -13,7 +14,7 @@ const DivSlider = styled.div`
   top:0;
   left:calc((100% - 2100px) / 2);
   right:calc((100% - 2100px) / 2);
-  height:420px;
+  bottom:0;
   width:2100px;
 `;
 
@@ -81,8 +82,8 @@ const ImageSlider = ({datas}) =>{
             buttonsDisabled={true}
             ref={carousel}
           />
-          <ButtonArrow direction="left" onClick={() => carousel.current.slidePrev()}/>
-          <ButtonArrow direction="right" onClick={() => carousel.current.slideNext()}/>
+        <ButtonArrow direction="left" onClick={() => carousel.current.slidePrev()}/>
+        <ButtonArrow direction="right" onClick={() => carousel.current.slideNext()}/>
         </DivSlider>
       </DivContainer>
     )
