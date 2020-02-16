@@ -5,9 +5,16 @@ import 'react-alice-carousel/lib/alice-carousel.css'
 
 const DivContainer = styled.div`
   position:relative;
+  width:100%;
+`;
+
+const DivSlider = styled.div`
+  position:absolute;
+  top:0;
+  left:calc((100% - 2100px) / 2);
+  right:calc((100% - 2100px) / 2);
   height:420px;
   width:2100px;
-  margin:0 auto;
 `;
 
 const DivImageItem = styled.div`
@@ -65,16 +72,18 @@ const ImageSlider = ({datas}) =>{
   const carousel = useRef();
     return (
       <DivContainer>
-        <AliceCarousel
-          mouseTrackingEnabled
-          items={imgSlider}
-          responsive={ {0: { items: 5 }} }
-          dotsDisabled={true}
-          buttonsDisabled={true}
-          ref={carousel}
-        />
-        <ButtonArrow direction="left" onClick={() => carousel.current.slidePrev()}/>
-        <ButtonArrow direction="right" onClick={() => carousel.current.slideNext()}/>
+        <DivSlider>
+          <AliceCarousel
+            mouseTrackingEnabled
+            items={imgSlider}
+            responsive={ {0: { items: 5 }} }
+            dotsDisabled={true}
+            buttonsDisabled={true}
+            ref={carousel}
+          />
+          <ButtonArrow direction="left" onClick={() => carousel.current.slidePrev()}/>
+          <ButtonArrow direction="right" onClick={() => carousel.current.slideNext()}/>
+        </DivSlider>
       </DivContainer>
     )
 }
