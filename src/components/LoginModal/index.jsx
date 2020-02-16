@@ -44,13 +44,12 @@ class LoginModal extends Component {
 
   userInfo = () => {
     return (
-      <UserProfilePictureContainer>
+      <UserProfilePictureContainer isMainPage={this.props.isMainPage}>
         <ProfilePicture />
-        {this.state.isClickedUserInfo ? 
+        {this.state.isClickedUserInfo ?
         <UserInfoCloseBtn onClick={this.handleUserInfoToFalse} /> 
         : 
-        <UserInfoOpenBtn onClick={this.handleUserInfo} />
-        }
+        <UserInfoOpenBtn onClick={this.handleUserInfo} />}
       </UserProfilePictureContainer>
     )
   }
@@ -68,7 +67,8 @@ class LoginModal extends Component {
             </KakaoLoginContainer>
           </Modal>
         </ModalContainer>
-        {this.state.isLoggedIn && this.state.isClickedUserInfo && <IsLoggedInUserInfo logout={this.logout} />}
+        {this.state.isLoggedIn && this.state.isClickedUserInfo && 
+        <IsLoggedInUserInfo logout={this.logout} />}
       </Wrapper>
     );
   }
@@ -77,7 +77,7 @@ class LoginModal extends Component {
 const UserProfilePictureContainer = styled.div`
   width: 44px;
   height: 30px;
-  position: absolute;
+  position: ${props => props.isMainPage ? "absolute" : ""};
   top: 20px;
   right: 20px;
   display: flex;

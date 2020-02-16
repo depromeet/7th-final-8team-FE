@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import StarRating from '../StarRating';
 
 class DetailWriteReviewForm extends Component {
   constructor(props) {
