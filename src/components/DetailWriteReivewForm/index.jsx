@@ -8,6 +8,7 @@ class DetailWriteReviewForm extends Component {
     this.state = {
       reviewContents: "",
       reviewLength: 0,
+      rating: 0,
     }
   }
 
@@ -24,8 +25,27 @@ class DetailWriteReviewForm extends Component {
     this.setState({ reviewContents: e.target.value });
   }
 
+  setRatingOne = () => {
+    this.setState({ rating: 1 })
+  }
+
+  setRatingTwo = () => {
+    this.setState({ rating: 2 })
+  }
+
+  setRatingThree = () => {
+    this.setState({ rating: 3 })
+  }
+
+  setRatingFour = () => {
+    this.setState({ rating: 4 })
+  }
+
+  setRatingFive = () => {
+    this.setState({ rating: 5 })
+  }
+
   render() {
-    console.log(this.props);
     return (
       <>
         <Background />
@@ -35,11 +55,11 @@ class DetailWriteReviewForm extends Component {
               <FirstText>와이키키 절벽</FirstText>
             </Title>
             <Stars>
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <Star />
+              <FirstStar rating={this.state.rating} onClick={this.setRatingOne}>★</FirstStar>
+              <SecondStar rating={this.state.rating} onClick={this.setRatingTwo}>★</SecondStar>
+              <ThirdStar rating={this.state.rating} onClick={this.setRatingThree}>★</ThirdStar>
+              <FourthStar rating={this.state.rating} onClick={this.setRatingFour}>★</FourthStar>
+              <FifthStar rating={this.state.rating} onClick={this.setRatingFive}>★</FifthStar>
             </Stars>
             <Pharse>
               <SecondText>방문한 장소를 평가해주세요!</SecondText>
@@ -132,8 +152,32 @@ const Stars = styled.div`
 const Star = styled.div`
   width: 38px;
   height: 38px;
-  background-color: #efefef;
   margin-right: 4px;
+  text-align: center;
+  font-size: 44px;
+  color: #efefef;
+  cursor: pointer;
+  transition: 0.5s;
+`
+
+const FirstStar = styled(Star)`
+  color: ${props => props.rating >= 1 ? "#ffd338" : "#efefef"};
+`
+
+const SecondStar = styled(Star)`
+  color: ${props => props.rating >= 2 ? "#ffd338" : "#efefef"};
+`
+
+const ThirdStar = styled(Star)`
+  color: ${props => props.rating >= 3 ? "#ffd338" : "#efefef"};
+`
+
+const FourthStar = styled(Star)`
+  color: ${props => props.rating >= 4 ? "#ffd338" : "#efefef"};
+`
+
+const FifthStar = styled(Star)`
+  color: ${props => props.rating >= 5 ? "#ffd338" : "#efefef"};
 `
 
 const Pharse = styled.div`

@@ -9,7 +9,7 @@ function Home() {
       <SideBar/>
       {/* TODO: 환경변수에 키 설정 */}
       <Map />
-      <LoginModal />
+      <LoginModal isMainPage={true}/>
     </>
   );
 }
