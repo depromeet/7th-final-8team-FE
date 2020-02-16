@@ -1,12 +1,14 @@
 import React from 'react';
 import Header from '../../containers/Header/Header'
-import PlaceDetail from '../../containers/PlaceDetail/PlaceDetail';
+import PlaceDetail1 from '../../containers/PlaceDetail/PlaceDetail1';
+import ImageSlider from '../../components/ImageSlider/ImageSlider';
 
 function Details() {
   return (
     <>
       <Header></Header>
-      <PlaceDetail></PlaceDetail>
+      <ImageSlider />
+      <PlaceDetail1></PlaceDetail1>
     </>
   );
 }
