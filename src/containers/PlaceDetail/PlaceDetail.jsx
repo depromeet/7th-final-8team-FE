@@ -17,7 +17,7 @@ const ArticlePlaceDetail = styled.article`
   padding-top:1px;
   background:#fff;
   position:relative;
-  z-index:1
+  z-index:1;
 `;
 
 const DivInfoTab = styled.div`
