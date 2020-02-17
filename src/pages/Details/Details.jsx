@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../containers/Header/Header'
-import PlaceDetail1 from '../../containers/PlaceDetail/PlaceDetail1';
+import PlaceDetail from '../../containers/PlaceDetail/PlaceDetail';
 import ImageSlider from '../../components/ImageSlider/ImageSlider';
 
 function Details() {
@@ -8,7 +8,7 @@ function Details() {
     <>
       <Header></Header>
       <ImageSlider />
-      <PlaceDetail1></PlaceDetail1>
+      <PlaceDetail></PlaceDetail>
     </>
   );
 }

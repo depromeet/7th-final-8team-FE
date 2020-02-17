@@ -11,6 +11,7 @@ const HeaderContainer = styled.header`
   display:flex;
   justify-content:space-around;
   margin: 0 auto;
+  padding: 0 20px;
 `;
 const ImgLogo = styled.img`
   height: 24px;
