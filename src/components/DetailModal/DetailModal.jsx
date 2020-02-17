@@ -77,7 +77,7 @@ const NavTabs = styled.nav`
 const SectionTabBody = styled.section`
   padding:40px 39px 40px 40px;
 `;
-function DetailModal({DetailModalHeader,tabList, tabBodyList}) {
+function DetailModal({infoHeader,tabList, tabBodyList}) {
   // tabList: [ {key:'info',btnValue:'정보'}, {key:'review',btnValue:'리뷰'},]  
   // tabBodyList: [<PlaceDetailInfoTab/>, <DetailReviews/>,]
   console.log(tabList);
@@ -102,15 +102,13 @@ function DetailModal({DetailModalHeader,tabList, tabBodyList}) {
   }
   return (
     <ArticlePlaceDetail>
-      {/* DetailModal Header */}
       <DivInfoTab>
-        {DetailModalHeader}
+        {infoHeader}
       </DivInfoTab>
       <NavTabs>
         {genTab(tabList)}
       </NavTabs>
       <SectionTabBody>
-        {/* DetailModal Body */}
         {tabBody}
       </SectionTabBody>
     </ArticlePlaceDetail>
