@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
-import styled, {css} from 'styled-components';
+import styled, {css, ThemeProvider} from 'styled-components';
+import {darken, lighten} from 'polished';
 import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
 
@@ -36,17 +37,43 @@ const directionsStyles = css`
 		right:${directions[direction].right};
   `}
 `;
+
+// ---------
+// 버튼 스타일
+// ---------
+const palette = {
+	default: 'rgba(26, 26, 26, 0.22)',
+}
+const colorStyles = css`
+	/* 색상 */
+  ${({ theme, color }) => {
+		let selected;
+		// ThemeProvider를 쓰지 않거나 color에 임의의 색상값을 직접 넣는 경우 대비
+		(theme.palette && theme.palette[color]) ? selected = theme.palette[color] : selected = color;
+		return css`
+			background: ${selected};
+			&:hover {
+				background:${lighten(0.2, selected)};
+			};
+			&:active {
+				background:${darken(0.5, selected)};
+			};
+		`;
+	}}
+`;
 const ButtonArrow = styled.button`
   width:34px;
   height:34px;
   border-radius:100%;
-  background:rgba(26, 26, 26, 0.22);
   border:0;
   position:absolute;
   top:198px;
   cursor: pointer;
   ${directionsStyles}
-  &:focus, &:active{outline:none}
+  &:focus, &:active{
+    outline:none
+  }
+  ${colorStyles}
   &::after{
     content:'';
     width:8px;
@@ -82,8 +109,10 @@ const ImageSlider = ({datas}) =>{
             buttonsDisabled={true}
             ref={carousel}
           />
-        <ButtonArrow direction="left" onClick={() => carousel.current.slidePrev()}/>
-        <ButtonArrow direction="right" onClick={() => carousel.current.slideNext()}/>
+          <ThemeProvider theme={{palette}}>
+            <ButtonArrow direction="left" color="default" onClick={() => carousel.current.slidePrev()}/>
+            <ButtonArrow direction="right" color="default" onClick={() => carousel.current.slideNext()}/>
+          </ThemeProvider>
         </DivSlider>
       </DivContainer>
     )
