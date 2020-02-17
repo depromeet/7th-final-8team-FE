@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import DetailReview from 'components/DetailReview';
 import select from 'images/select.png';
 import DetailWriteReviewForm from '../DetailWriteReivewForm';
+import writeReviewIcon from '../../images/writeReview.png';
 
 class DetailReviews extends Component {
   constructor(props) {
@@ -81,7 +82,10 @@ class DetailReviews extends Component {
             <SortBtn />
           </Select>
           <PuppleCircle onClick={this.handleWriteReivew}>
-            <WriteReivew>리뷰쓰기</WriteReivew>
+            <WriteReivew>
+              <Icon />
+              {"리뷰쓰기"}
+            </WriteReivew>
           </PuppleCircle>
         </Header>
         {this.state.fakeReviews.map((review, idx) => 
@@ -166,6 +170,14 @@ const PuppleCircle = styled.div`
 const Option = styled.option`
 `
 
+const Icon = styled.div`
+  width: 16px;
+  height: 16px;
+  background-image: url(${writeReviewIcon});
+  background-size: cover;
+  margin-right: 6px;
+`
+
 const WriteReivew = styled.div`
   margin: auto 0;
   font-family: SpoqaHanSans;
@@ -173,6 +185,7 @@ const WriteReivew = styled.div`
   font-weight: bold;
   letter-spacing: -0.55px;
   color: white;
+  display: flex;
 `
 
 const ViewMore = styled.div`
