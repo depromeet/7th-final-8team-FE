@@ -59,7 +59,7 @@ function PlaceDetail1({type, name, rating, numberOfReviews, km,}) {
   const tabBodyList= [<PlaceDetailInfoTab/>, <DetailReviews/>, <PlaceDetailRecommendTab/>]
   const placeInfo = <PlaceInfoHeader type={type} name={name} rating={rating} numberOfReviews={numberOfReviews} km={km}/>
   return (
-    <DetailModal DetailModalHeader={placeInfo} tabList={tabList} tabBodyList={tabBodyList}/>
+    <DetailModal infoHeader={placeInfo} tabList={tabList} tabBodyList={tabBodyList}/>
   )
 }
 
