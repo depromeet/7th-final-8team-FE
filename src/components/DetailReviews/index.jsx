@@ -22,10 +22,10 @@ class DetailReviews extends Component {
     }
   }
 
-  componentDidMount() {
-    // 컴포넌트 마운트 되면 평점높은순으로 우선 정렬
-    this.sort("평점높은순");
-  }
+  // componentDidMount() {
+  //   // 컴포넌트 마운트 되면 평점높은순으로 우선 정렬
+  //   this.sort("평점높은순");
+  // }
 
   // setState가 비동기라서 정렬하는 기능을 여기서 처리함. 이렇게 하는게 좋은건지 잘 모르겠음.
   componentDidUpdate(prevProps, prevState) {
@@ -46,20 +46,20 @@ class DetailReviews extends Component {
     this.setState({ isClickedWriteReivew: false });
   }
 
-  sort = (selected) => {
-    let tempData = this.state.fakeReviews.splice(0);
+  // sort = (selected) => {
+  //   let tempData = this.state.fakeReviews.splice(0);
 
-    if (selected === "평점높은순") {
-      tempData = tempData.sort((a, b) => a.Rating < b.Rating ? 1 : -1);
+  //   if (selected === "평점높은순") {
+  //     tempData = tempData.sort((a, b) => a.Rating < b.Rating ? 1 : -1);
       
-      this.setState({ fakeReviews: tempData });
-    } 
-    else if (selected === "최신순") {
-      tempData = tempData.sort((a, b) => Number(a.Date) < Number(b.Date) ? 1 : -1);
-                                          // 2020.01.01 < 2020.02.01
-      this.setState({ fakeReviews: tempData });
-    }
-  }
+  //     this.setState({ fakeReviews: tempData });
+  //   } 
+  //   else if (selected === "최신순") {
+  //     tempData = tempData.sort((a, b) => Number(a.Date) < Number(b.Date) ? 1 : -1);
+  //                                         // 2020.01.01 < 2020.02.01
+  //     this.setState({ fakeReviews: tempData });
+  //   }
+  // }
 
   // 임시로 가짜 데이터 추가
   handleViewMore = () => {
@@ -70,23 +70,50 @@ class DetailReviews extends Component {
     this.setState({ fakeReviews: tempData });
   }
 
+  writeReviewBtn = () => {
+    return (
+      !this.props.isMyPage &&
+      <PuppleCircle onClick={this.handleWriteReivew}>
+        <WriteReivew>
+          <Icon />
+          {"리뷰쓰기"}
+        </WriteReivew>
+      </PuppleCircle>
+    )
+  }
+
+  selectOfDetails = () => {
+    return (
+      <Select>
+        <Sort>
+          <Option value={"평점높은순"}>평점높은순</Option>
+          <Option value={"최신순"}>최신순</Option>
+        </Sort>
+        <SortBtn />
+      </Select>
+    )
+  }
+
+  selectOfMypage = () => {
+    return (
+      <Select>
+        <Sort>
+          <Option value={"전체"}>전체</Option>
+          <Option value={"관광지"}>관광지</Option>
+          <Option value={"맛집"}>맛집</Option>
+          <Option value={"카페"}>카페</Option>
+        </Sort>
+        <SortBtn />
+      </Select>
+    )
+  }
+
   render() {
     return (
       <Wrapper>
         <Header>
-          <Select>
-            <Sort onChange={e => this.handleChangeSelected(e)}>
-              <Option value={"평점높은순"}>평점높은순</Option>
-              <Option value={"최신순"}>최신순</Option>
-            </Sort>
-            <SortBtn />
-          </Select>
-          <PuppleCircle onClick={this.handleWriteReivew}>
-            <WriteReivew>
-              <Icon />
-              {"리뷰쓰기"}
-            </WriteReivew>
-          </PuppleCircle>
+          {this.props.isMyPage ? this.selectOfMypage() : this.selectOfDetails()}
+          {this.writeReviewBtn()}
         </Header>
         {this.state.fakeReviews.map((review, idx) => 
           <DetailReview 
