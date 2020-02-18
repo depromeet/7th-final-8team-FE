@@ -23,7 +23,7 @@ const LiResult = styled.li`
   line-height: 20px;
   letter-spacing: -0.55px;
   padding: 7px 12px;
-  box-sizing:border-box
+  box-sizing:border-box;
 `;
 
 const ButtonSearch = styled.button`
@@ -94,6 +94,7 @@ function AddressSearchInput() {
   const onPlace = (e, result) =>{
     setIsViewResultList(false);
     setPlace(result);
+    // API 통신 로직 필요
   }
   return (
     <div style={{
