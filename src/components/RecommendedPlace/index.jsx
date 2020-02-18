@@ -9,7 +9,9 @@ function RecommendedPlace({ placeData, size, ...rest }) {
       <Wrap>
         <FirstRow>
           <Type>{type}</Type>
-          <BookMark />
+          {/* 사이즈가 미디엄일 경우 닫기 버튼을 표시 */}
+          {size === "medium" ? <Triangle /> : null}
+          {size === "medium" ? <CloseBtn><Xbtn>x</Xbtn></CloseBtn> : <BookMark />}
         </FirstRow>
         <Name>{name}</Name>
         <Row>
@@ -30,9 +32,10 @@ function RecommendedPlace({ placeData, size, ...rest }) {
     </Wrapper>
 	)
 }
+
 const sizes = {
   big: {width:'360px', height:'346px', margin:'3px 20px 30px 20px'},
-  medium: {width:'346px', height:'268px', margin:'3px 20px 30px 20px'},
+  medium: {width:'320px', height:'268px', margin:'3px 20px 30px 20px'},
   small: {width:'227px', height:'268px', margin:'3px 10px 30px 10px'},
 };
 const sizeStyles = css`
@@ -43,6 +46,17 @@ const sizeStyles = css`
     margin: ${sizes[size].margin};
   `}
 `;
+
+const Triangle = styled.span`
+  width: 0; 
+  height: 0; 
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 22px solid #ffffff;
+  position: relative;
+  bottom: 42px;
+`
+
 const Wrapper = styled.div`
   box-sizing: border-box;
   ${sizeStyles}
@@ -83,6 +97,21 @@ const BookMark = styled.div`
   background-image: url(${bookmark});
   background-size: cover;
   cursor: pointer;
+`
+
+const CloseBtn = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+`
+
+const Xbtn = styled.div`
+  margin: auto 0;
+  color: #ffffff;
 `
 
 const Type = styled.div`
