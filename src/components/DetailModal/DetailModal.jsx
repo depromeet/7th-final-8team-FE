@@ -112,9 +112,9 @@ function DetailModal({infoHeader,tabList, tabBodyList, isMyPage}) {
       <NavTabs>
         {genTab(tabList)}
       </NavTabs>
-      <SectionTabBody isMyPage={isMyPage}>
+      <section>
         {tabBody}
-      </SectionTabBody>
+      </section>
     </ArticlePlaceDetail>
   )
 };
