@@ -162,6 +162,7 @@ const Sort = styled.select`
   background-color: white;
   position: relative;
   top: 8px;
+  margin-left: 40px;
 
   -webkit-appearance: none;
   -moz-appearance: none;

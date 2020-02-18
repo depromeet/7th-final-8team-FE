@@ -50,6 +50,7 @@ class MyPageContainer extends Component {
             infoHeader={placeInfo}
             tabList={tabList}
             tabBodyList={tabBodyList}
+            isMyPage={true}
           />
         </DetailModealContainer>
       </>
