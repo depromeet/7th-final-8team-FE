@@ -75,9 +75,11 @@ const NavTabs = styled.nav`
 `;
 
 const SectionTabBody = styled.section`
-  padding:40px 39px 40px 40px;
+  /* padding:40px 39px 40px 40px; */
+  padding: ${(props)=> props.isMyPage ? "40px 0 0 0" : "40px 39px 40px 40px"};
+
 `;
-function DetailModal({infoHeader,tabList, tabBodyList}) {
+function DetailModal({infoHeader,tabList, tabBodyList, isMyPage}) {
   // tabList: [ {key:'info',btnValue:'정보'}, {key:'review',btnValue:'리뷰'},]  
   // tabBodyList: [<PlaceDetailInfoTab/>, <DetailReviews/>,]
   console.log(tabList);
@@ -108,7 +110,7 @@ function DetailModal({infoHeader,tabList, tabBodyList}) {
       <NavTabs>
         {genTab(tabList)}
       </NavTabs>
-      <SectionTabBody>
+      <SectionTabBody isMyPage={isMyPage}>
         {tabBody}
       </SectionTabBody>
     </ArticlePlaceDetail>
