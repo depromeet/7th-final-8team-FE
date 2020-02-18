@@ -7,6 +7,8 @@ const ArticlePlaceDetail = styled.article`
   border-radius:20px;
   box-shadow: 0px 3px 5px rgba(196, 196, 196, 0.2), 0px 1px 18px rgba(34, 34, 34, 0.12), 0px 6px 10px rgba(196, 196, 196, 0.14);
   width:800px;
+  min-height: 750px;
+  /* 마이페이지의 북마크, 리뷰가 없는 경우에도 최소 750px 유지해야 함. */
   margin: -60px auto 120px auto;
   /* 자식요소 DivInfoTab의 마진 붕괴(margin collapse)를 막기 위해 */
   /* 부모 요소인 ArticlePlaceDetail에 padding 삽입 */

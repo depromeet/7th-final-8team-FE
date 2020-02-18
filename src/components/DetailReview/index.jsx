@@ -38,6 +38,8 @@ const Review = styled.div`
   padding-bottom: 20px;
   box-sizing: border-box;
   border-bottom: 1px solid #efefef;
+  padding-left: 40px;
+  padding-right: 40px;
 `
 
 const Profile = styled.div`
