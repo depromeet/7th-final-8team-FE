@@ -1,24 +1,68 @@
 import React, {useState} from 'react';
 import InputText from '../InputText';
-import Button from '../Button';
+import searchIcon from '../../assets/icon_search.svg'
 import styled from 'styled-components';
 
 const SearchResultUL = styled.ul`
   width:100%;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 4px rgba(34, 34, 34, 0.2), 0px 4px 5px rgba(196, 196, 196, 0.14);
+  border-radius: 20px;
+  border-radius:${props=> props.isSearching ? '0 0 20px 20px' : '20px' }
   position:absolute;
-  top:3.5rem;
-  left:1rem;
   cursor:pointer;
   background:#fff;
+  display:${props => (props.isSearching ? 'static' : 'none')};
+  z-index:999;
+`;
+const LiResult = styled.li`
+  width:100%;
+  height:36px;
+  display:inline-block;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: -0.55px;
+  padding: 7px 12px;
+  box-sizing:border-box
 `;
 
+const ButtonSearch = styled.button`
+  position:absolute;
+  right:20px;
+  top:0
+  width:48px;
+  height:48px;
+  padding:0;
+  background-color:transparent;
+  border:0;
+  background-image:url(${searchIcon});
+  background-size: 24px 24px
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+`;
+
+
 function AddressSearchInput() {
+  const defaultValue = {
+    placeholder: '여행할 장소를 입력해주세요 🛫',
+    label: null,
+    size:'default',
+    isLabel: '',
+  }
+  const {placeholder,label,size,isLabel} = defaultValue;
+  
   const [address, setAddress] = useState('');
   const [resultList, setResultList] = useState(null);
   const [isViewResultList, setIsViewResultList] = useState(false);
   const [place, setPlace] = useState(null);
+  
 
-  const onChange=e=>setAddress(e.target.value);
+  const onChange=e=>{
+    setAddress(e.target.value);
+    if(e.target.value.length === 0){
+      setResultList(null);
+    }
+  }
   const kakao = window.kakao;
   const ps = new kakao.maps.services.Places();  
   const searchPlaces=e=>{
@@ -52,14 +96,21 @@ function AddressSearchInput() {
     setPlace(result);
   }
   return (
-    <div>
-      <InputText placeholder={"갈 여행지 주소를 입력해주세요🛫"} label={"ADDRESS"} size={"medium"} name="address"
+    <div style={{
+      margin:"16px 1rem  20px 1rem",
+      position:"relative",
+    }}>
+      <InputText placeholder={placeholder} label={label} size={size} isLabel={isLabel} style={{padding:'0 20px'}}
+        autoComplete="off" name="address"
+        onChange={onChange} onKeyUp={searchPlaces} isSearching={!!resultList && !(address.length===0)}/>
+      {/* <InputText placeholder={"갈 여행지 주소를 입력해주세요🛫"} label={"ADDRESS"} size={"medium"} name="address"
         onChange={onChange} onKeyUp={searchPlaces}
-      />
-      <Button color={"pink"} onClick={searchPlaces}>검색</Button>
-      <SearchResultUL>
+      /> */}
+      {/* <Button color={"pink"} onClick={searchPlaces}>검색</Button> */}
+      <ButtonSearch onClick={searchPlaces}></ButtonSearch>
+      <SearchResultUL isSearching={!!resultList && !(address.length===0)}>
         {!!isViewResultList && !!resultList && resultList.map(result=>{
-          return <li key={result.id} onClick={e=>{onPlace(e,result)}}>{result.place_name} | {result.address_name}</li>
+          return <LiResult key={result.id} onClick={e=>{onPlace(e,result)}}>{result.place_name} | {result.address_name}</LiResult>
         })}
       </SearchResultUL>
       {!!place && (<><h1>{place.place_name}</h1>{place.category_name} | x: {place.x} | y: {place.y}</>)}
