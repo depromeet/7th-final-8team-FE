@@ -3,6 +3,7 @@ import RecommendedPlaceContainer from 'containers/RecommendedPlaceContainer';
 import styled from 'styled-components';
 import logo from 'images/logo.gif';
 import Cramp from 'components/Cramp';
+import SearchInput from '../../containers/SearchInput/SearchInput';
 
 class SideBar extends Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class SideBar extends Component {
         <MoreBtn onClick={this.handleMoreBtn}>
           <Cramp />
         </MoreBtn>}
+        <SearchInput/>
         <RecommendedPlaceContainer />
       </Wrapper>
     )
