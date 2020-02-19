@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
+import styled, {css, ThemeProvider} from 'styled-components';
+import {darken, lighten} from 'polished';
 import InputText from '../InputText';
 import searchIcon from '../../assets/icon_search.svg'
-import styled from 'styled-components';
 
 const SearchResultUL = styled.ul`
   width:100%;
@@ -10,10 +11,31 @@ const SearchResultUL = styled.ul`
   border-radius: 20px;
   border-radius:${props=> props.isSearching ? '0 0 20px 20px' : '20px' }
   position:absolute;
+  top:46px;
   cursor:pointer;
   background:#fff;
   display:${props => (props.isSearching ? 'static' : 'none')};
   z-index:999;
+`;
+// list hover, active 스타일
+const palette = {
+	default: '#DCDCDC',
+}
+const colorStyles = css`
+	/* 색상 */
+  ${({ theme, color }) => {
+		let selected;
+		// ThemeProvider를 쓰지 않거나 color에 임의의 색상값을 직접 넣는 경우 대비
+		(theme.palette && theme.palette[color]) ? selected = theme.palette[color] : selected = color;
+		return css`
+			&:hover {
+				background:${lighten(0.1, selected)};
+			};
+			&:active {
+				background:${darken(0.1, selected)};
+			};
+		`;
+	}}
 `;
 const LiResult = styled.li`
   width:100%;
@@ -24,6 +46,7 @@ const LiResult = styled.li`
   letter-spacing: -0.55px;
   padding: 7px 12px;
   box-sizing:border-box;
+  ${colorStyles}
 `;
 
 const ButtonSearch = styled.button`
@@ -111,7 +134,11 @@ function AddressSearchInput() {
       <ButtonSearch onClick={searchPlaces}></ButtonSearch>
       <SearchResultUL isSearching={!!resultList && !(address.length===0)}>
         {!!isViewResultList && !!resultList && resultList.map(result=>{
-          return <LiResult key={result.id} onClick={e=>{onPlace(e,result)}}>{result.place_name} | {result.address_name}</LiResult>
+          return (
+          <ThemeProvider theme={{palette}}>
+            <LiResult key={result.id} color="default" onClick={e=>{onPlace(e,result)}}>{result.place_name} | {result.address_name}</LiResult>
+          </ThemeProvider>
+          )
         })}
       </SearchResultUL>
       {!!place && (<><h1>{place.place_name}</h1>{place.category_name} | x: {place.x} | y: {place.y}</>)}
