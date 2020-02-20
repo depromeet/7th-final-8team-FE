@@ -3,12 +3,29 @@ import styled, { css } from 'styled-components';
 import bookmark from '../../images/bookmark.png';
 
 function RecommendedPlace({ placeData, size, ...rest }) {
-  const { type, name, rating, numberOfReviews, km, picture, } = placeData;
+  // const { type, name, rating, numberOfReviews, km, picture, } = placeData;
+  const { category, name, rating, reviewCount, images} = placeData
+  const km = 5;
+  // locationId: 1
+  // name: "동백키친"
+  // description: null
+  // category: "RESTAURANT"
+  // subCategory: null
+  // address: "제주특자치도 제주시 한림 수원7 42"
+  // latitude: 100
+  // longitude: 200
+  // phoneNumber: "064-796-1015"
+  // businessHours: "월,화,수,금,토,일 11:00 ~ 20:00↵월,화,수,금 브레이크타임 15:00 ~ 16:00"
+  // detail: null
+  // images: (2) ["http://img1.daumcdn.net/thumb/T680x420/?fname=http…aumcdn.net%2Flocalfiy%2Fsearchregister_1505814184", "http://img1.daumcdn.net/thumb/T680x420/?fname=http…aumcdn.net%2Flocalfiy%2Fsearchregister_1505814184"]
+  // rating: 4.3
+  // reviewCount: 0
+  // bookmarking: false
 	return (
     <Wrapper size={size} {...rest}>
       <Wrap>
         <FirstRow>
-          <Type>{type}</Type>
+          <Type>{category}</Type>
           <BookMark />
         </FirstRow>
         <Name>{name}</Name>
@@ -19,14 +36,18 @@ function RecommendedPlace({ placeData, size, ...rest }) {
           <StarRating />
           <StarRating />
           <NumberRating>{rating}</NumberRating>
-          <NumberOfReviews>{`| 리뷰 ${numberOfReviews}건`}</NumberOfReviews>
+          <NumberOfReviews>{`| 리뷰 ${reviewCount}건`}</NumberOfReviews>
         </Row>
         <SecondRow>
           <FromMyLocation>{`내 위치에서 ${km}km`}</FromMyLocation>
           <ViewDetails>{`상세보기 >`}</ViewDetails>
         </SecondRow>
       </Wrap>
-      <Picture color={picture} type={type}/>
+      <Picture
+        url={images[0]}
+        // color={picture}
+        type={category}
+      />
     </Wrapper>
 	)
 }
@@ -169,21 +190,22 @@ const ViewDetails = styled.div`
 
 const Picture = styled.div`
   width: ${props => {
-    if (props.type === "관광") return "80%";
-    else if (props.type === "맛집") return "117.5%";
-    else if (props.type === "카페") return "122.5%";
+    if (props.type === "ATTRACTIONS") return "80%";
+    else if (props.type === "RESTAURANT") return "117.5%";
+    else if (props.type === "CAFE") return "122.5%";
   }};
   height: ${props => {
-    if (props.type === "카페") return "221px";
+    if (props.type === "CAFE") return "221px";
     else return "208px";
   }};
   background-color: ${props => props.color};
+  background: url(${props=>props.url});
   background-size: cover;
   margin-top: auto;
   border-radius: ${props => {
-    if (props.type === "관광") return "20px 0px";
-    else if (props.type === "맛집") return "211.5px 211.5px 0 0";
-    else if (props.type === "카페") return "20px 0 220.5px 220.5px";
+    if (props.type === "ATTRACTIONS") return "20px 0px";
+    else if (props.type === "RESTAURANT") return "211.5px 211.5px 0 0";
+    else if (props.type === "CAFE") return "20px 0 220.5px 220.5px";
   }};
   position: relative;
   left: 20.5%;
