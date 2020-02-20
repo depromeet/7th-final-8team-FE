@@ -5,44 +5,82 @@ import logo from 'images/logo.gif';
 import Cramp from 'components/Cramp';
 // import SearchInput from '../../containers/SearchInput/SearchInput';
 import AddressSearchInput from '../AddressSearchInput/AddressSearchInput';
+import { useDataState, useDataDispatch, getLocations } from '../../util/DataContext';
+import { useState, useEffect } from 'react';
 
-class SideBar extends Component {
-  constructor(props) {
-    super(props);
+function SideBar(props) {
+  const [isClickedFoldBtn, SetIsClickedFoldBtn] = useState(false)
+  const handleFoldBtn = () => SetIsClickedFoldBtn(true)
+  const handleMoreBtn = () => SetIsClickedFoldBtn(false)
 
-    this.state = {
-      isClickedFoldBtn: false, 
-    }
+
+  // 데이터 통신
+  const state = useDataState();
+  const dispatch = useDataDispatch();
+  const {loading, data:locations, error} = state.locations;
+
+
+  const onGetLocations = ({x,y}) =>{
+    console.log(x,y)
+    getLocations(dispatch,x,y)
   }
 
-  handleFoldBtn = () => {
-    this.setState({ isClickedFoldBtn: true });
-  }
-
-  handleMoreBtn = () => {
-    this.setState({ isClickedFoldBtn: false });
-  }
-
-  render() {
-    return (
-      <Wrapper isFolded={this.state.isClickedFoldBtn}>
-        <Wrap>
-          <Logo />
-            <FoldBtn onClick={this.handleFoldBtn}>
-              <Cramp />
-            </FoldBtn>
-        </Wrap>
-        {this.state.isClickedFoldBtn && 
-        <MoreBtn onClick={this.handleMoreBtn}>
-          <Cramp />
-        </MoreBtn>}
-        {/* <SearchInput/> */}
-        <AddressSearchInput/>
-        <RecommendedPlaceContainer />
-      </Wrapper>
-    )
-  }
+  return (
+    <Wrapper isFolded={isClickedFoldBtn}>
+      <Wrap>
+        <Logo />
+          <FoldBtn onClick={handleFoldBtn}>
+            <Cramp />
+          </FoldBtn>
+      </Wrap>
+      {isClickedFoldBtn && 
+      <MoreBtn onClick={handleMoreBtn}>
+        <Cramp />
+      </MoreBtn>}
+      {/* <SearchInput/> */}
+      <AddressSearchInput onSearch={onGetLocations}/>
+      <RecommendedPlaceContainer/>
+    </Wrapper>
+  )
 }
+
+// class SideBar extends Component {
+//   constructor(props) {
+//     super(props);
+
+//     this.state = {
+//       isClickedFoldBtn: false,
+//     }
+//   }
+
+//   handleFoldBtn = () => {
+//     this.setState({ isClickedFoldBtn: true });
+//   }
+
+//   handleMoreBtn = () => {
+//     this.setState({ isClickedFoldBtn: false });
+//   }
+
+//   render() {
+//     return (
+//       <Wrapper isFolded={this.state.isClickedFoldBtn}>
+//         <Wrap>
+//           <Logo />
+//             <FoldBtn onClick={this.handleFoldBtn}>
+//               <Cramp />
+//             </FoldBtn>
+//         </Wrap>
+//         {this.state.isClickedFoldBtn && 
+//         <MoreBtn onClick={this.handleMoreBtn}>
+//           <Cramp />
+//         </MoreBtn>}
+//         {/* <SearchInput/> */}
+//         <AddressSearchInput/>
+//         <RecommendedPlaceContainer />
+//       </Wrapper>
+//     )
+//   }
+// }
 
 
 const Wrapper = styled.div`
