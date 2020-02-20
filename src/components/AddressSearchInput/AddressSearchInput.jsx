@@ -65,7 +65,7 @@ const ButtonSearch = styled.button`
 `;
 
 
-function AddressSearchInput() {
+function AddressSearchInput({onSearch}) {
   const defaultValue = {
     placeholder: '여행할 장소를 입력해주세요 🛫',
     label: null,
@@ -77,7 +77,6 @@ function AddressSearchInput() {
   const [address, setAddress] = useState('');
   const [resultList, setResultList] = useState(null);
   const [isViewResultList, setIsViewResultList] = useState(false);
-  const [place, setPlace] = useState(null);
   
 
   const onChange=e=>{
@@ -116,8 +115,9 @@ function AddressSearchInput() {
   // 검색 결과를 클릭했을때
   const onPlace = (e, result) =>{
     setIsViewResultList(false);
-    setPlace(result);
+    setAddress('');
     // API 통신 로직 필요
+    onSearch(result);
   }
   return (
     <div style={{
@@ -125,23 +125,18 @@ function AddressSearchInput() {
       position:"relative",
     }}>
       <InputText placeholder={placeholder} label={label} size={size} isLabel={isLabel} style={{padding:'0 20px'}}
-        autoComplete="off" name="address"
+        autoComplete="off" name="address" value={address}
         onChange={onChange} onKeyUp={searchPlaces} isSearching={!!resultList && !(address.length===0)}/>
-      {/* <InputText placeholder={"갈 여행지 주소를 입력해주세요🛫"} label={"ADDRESS"} size={"medium"} name="address"
-        onChange={onChange} onKeyUp={searchPlaces}
-      /> */}
-      {/* <Button color={"pink"} onClick={searchPlaces}>검색</Button> */}
       <ButtonSearch onClick={searchPlaces}></ButtonSearch>
-      <SearchResultUL isSearching={!!resultList && !(address.length===0)}>
+      <SearchResultUL isSearching={!!resultList && !(address.length===0)} >
         {!!isViewResultList && !!resultList && resultList.map(result=>{
           return (
-          <ThemeProvider theme={{palette}}>
-            <LiResult key={result.id} color="default" onClick={e=>{onPlace(e,result)}}>{result.place_name} | {result.address_name}</LiResult>
+          <ThemeProvider key={result.id} theme={{palette}}>
+            <LiResult color="default" onClick={e=>{onPlace(e,result)}}>{result.place_name}</LiResult>
           </ThemeProvider>
           )
         })}
       </SearchResultUL>
-      {!!place && (<><h1>{place.place_name}</h1>{place.category_name} | x: {place.x} | y: {place.y}</>)}
     </div>
   )
 }
