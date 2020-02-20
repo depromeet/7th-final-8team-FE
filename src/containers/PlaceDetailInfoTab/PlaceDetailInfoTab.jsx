@@ -31,7 +31,7 @@ function PlaceDetailInfoTab({address, tel, operationHour, info, facilities, url}
   // 일단은 Object로 온다고 가정하고 제작
   return (
     <>
-      <ul>
+      <ul style={{padding:"40px 39px 40px 40px"}}>
         { address &&
           <LiInfo>
             <h3>가는 길</h3>
