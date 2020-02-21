@@ -2,7 +2,8 @@ import React from 'react';
 import styled, {ThemeProvider} from 'styled-components';
 import InputText from '../../components/InputText';
 import Button from '../../components/Button';
-import logoNonoPlan from '../../assets/logoNonoPlan.gif';
+import logoNonoPlan from '../../images/logo.gif';
+import LoginModal from '../../components/LoginModal';
 
 const HeaderContainer = styled.header`
   height:88px;
@@ -10,6 +11,8 @@ const HeaderContainer = styled.header`
   display:flex;
   justify-content:space-around;
   margin: 0 auto;
+  padding: 0 20px;
+  background-color: #ffffff;
 `;
 const ImgLogo = styled.img`
   height: 24px;
@@ -37,9 +40,10 @@ function Header() {
             style={{minWidth:"100px",maxWidth:"460px",width:"100%",margin:"0 auto"}}/>
         </DivSearchInput>
         
-        <ThemeProvider theme={{palette}}>
+        {/* <ThemeProvider theme={{palette}}>
           <Button color="purple" style={{margin:"auto 0"}}>로그인</Button>
-        </ThemeProvider>
+        </ThemeProvider> */}
+        <LoginModal />
     </HeaderContainer>
   )
 }

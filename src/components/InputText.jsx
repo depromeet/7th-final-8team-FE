@@ -19,8 +19,8 @@ const labelSizesStyles = css`
 const StyledLabel = styled.label`
   display:block;
   ${labelSizesStyles}
-  margin-left:1rem;
-  margin-right:1rem;
+  /* margin-left:1rem;
+  margin-right:1rem; */
   & + & {
 		margin-top: 0.5rem;
 	}
@@ -41,6 +41,7 @@ const sizeStyles = css`
     line-height:${sizes[size].lineHeight};
   `}
 `;
+
 // 입력창 컴포넌트
 const StyledInput = styled.input.attrs({
   type: 'text'
@@ -50,7 +51,7 @@ const StyledInput = styled.input.attrs({
   box-sizing:border-box;
   display: block;
   outline:none;
-  box-shadow: 0px 2px 4px rgba(34, 34, 34, 0.2), 0px 1px 10px rgba(34, 34, 34, 0.12), 0px 4px 5px rgba(196, 196, 196, 0.14);
+  /* box-shadow: 0px 2px 4px rgba(34, 34, 34, 0.2), 0px 1px 10px rgba(34, 34, 34, 0.12), 0px 4px 5px rgba(196, 196, 196, 0.14); */
   border: 0;
   border-radius: 100px;
   color: #242729;
@@ -68,6 +69,11 @@ const StyledInput = styled.input.attrs({
     border-color:${darken(0.8, '#A9A9A9')};
   };
   ${sizeStyles}
+  /* 검색 결과 ul이 붙었을 때 */
+  border-radius:${props=> props.isSearching ? '25px 25px 0 0' : '100px' }
+  box-shadow:${props=> props.isSearching
+    ? '0px 1px 10px rgba(34, 34, 34, 0.12), 0px 4px 5px rgba(196, 196, 196, 0.14)'
+    : '0px 2px 4px rgba(34, 34, 34, 0.2), 0px 1px 10px rgba(34, 34, 34, 0.12), 0px 4px 5px rgba(196, 196, 196, 0.14)' };
 `;
 
 
