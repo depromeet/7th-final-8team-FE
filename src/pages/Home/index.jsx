@@ -1,7 +1,7 @@
 import React, {createContext} from 'react';
-import SideBar from 'components/SideBar';
-import Map from 'containers/KakaoMapContainer';
-import LoginModal from 'components/LoginModal';
+import SideBar from '../../components/SideBar';
+import Map from '../../containers/KakaoMapContainer';
+import LoginModal from '../../components/LoginModal';
 import { DataProvider } from '../../util/DataContext';
 
 export const CenterIdContext = createContext({
