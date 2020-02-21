@@ -10,9 +10,10 @@ function KakaoMapContainer({ clickedId, defalutCenter, defaultMarkers }) {
 
   const [center, setCenter] = useState(defalutCenter);
   const [markers, setMarkers] = useState(defaultMarkers);
-  const _center = !locations ? defalutCenter : {lat:locations.content[0].latitude, lng:locations.content[0].longitude}
-  useEffect(_=>{setCenter(_center)},[locations])
-  // 추천된 관광지를 선택한 화면(center:클릭한 관광지의 latlng. markers:BackAPI가 주는 리스트(변화없음), clickedId:클릭한 관광지의 id)
+  const _site = !locations ? defaultMarkers : locations.content.map(item=>{return {id:item.id, lat:item.latitude, lng:item.longitude }})
+  // 현재 그냥 첫번째를 찍어주지만 향후 검색결과들의 중간쯤의 위치로 변경할 예정
+  useEffect(_=>{setCenter(_site[0])},[locations])
+  useEffect(_=>{setMarkers(_site)},[locations])
   if(!!clickedId) {
     const centerLatLng = markers.filter(marker=>marker.id === clickedId)[0];
     setCenter(centerLatLng);
