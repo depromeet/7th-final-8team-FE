@@ -1,5 +1,6 @@
 import axios from 'axios';
-const API_URL = 'http://34.97.253.140';
+// const API_URL = 'http://34.97.253.140';
+const API_URL = 'http://15.165.176.164:8080';
 export async function getUsers(){
     const res = await axios.get('http://jsonplaceholder.typicode.com/users');
     return res.data;
