@@ -58,6 +58,7 @@ const sizeStyles = css`
 `;
 const Wrapper = styled.div`
   box-sizing: border-box;
+  cursor: pointer;
   ${sizeStyles}
   
   /* margin: 3px 20px 30px 20px; */
