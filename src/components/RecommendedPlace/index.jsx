@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import {CenterIdContext} from '../../pages/Home/index';
 import bookmark from '../../images/bookmark.png';

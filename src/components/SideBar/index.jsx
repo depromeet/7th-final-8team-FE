@@ -1,12 +1,12 @@
-import React, { Fragment, Component } from 'react';
-import RecommendedPlaceContainer from 'containers/RecommendedPlaceContainer';
+import React from 'react';
 import styled from 'styled-components';
-import logo from 'images/logo.gif';
-import Cramp from 'components/Cramp';
+import logo from '../../images/logo.gif';
+import Cramp from '../../components/Cramp';
 // import SearchInput from '../../containers/SearchInput/SearchInput';
 import AddressSearchInput from '../AddressSearchInput/AddressSearchInput';
+import RecommendedPlaceContainer from '../../containers/RecommendedPlaceContainer';
 import { useDataState, useDataDispatch, getLocations } from '../../util/DataContext';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function SideBar(props) {
   const [isClickedFoldBtn, SetIsClickedFoldBtn] = useState(false)

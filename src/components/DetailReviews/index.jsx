@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import DetailReview from 'components/DetailReview';
-import select from 'images/select.png';
+import DetailReview from '../../components/DetailReview';
+import select from '../../images/select.png';
 import DetailWriteReviewForm from '../DetailWriteReivewForm';
 import writeReviewIcon from '../../images/writeReview.png';
 

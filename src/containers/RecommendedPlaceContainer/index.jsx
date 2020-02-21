@@ -1,7 +1,7 @@
-import React, { Component, Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import RecommendedPlace from 'components/RecommendedPlace';
-import Categories from 'components/Categories';
+import RecommendedPlace from '../../components/RecommendedPlace';
+import Categories from '../../components/Categories';
 import DefaultCard from '../../components/DefaultCard/DefaultCard';
 
 import { useDataState } from '../../util/DataContext';
