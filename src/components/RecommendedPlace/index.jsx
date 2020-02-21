@@ -9,7 +9,6 @@ function RecommendedPlace({ placeData, size, ...rest }) {
       <Wrap>
         <FirstRow>
           <Type>{type}</Type>
-          {/* 사이즈가 미디엄일 경우 닫기 버튼을 표시 */}
           {size === "medium" ? <Triangle /> : null}
           {size === "medium" ? <CloseBtn><Xbtn>x</Xbtn></CloseBtn> : <BookMark />}
         </FirstRow>
@@ -28,7 +27,9 @@ function RecommendedPlace({ placeData, size, ...rest }) {
           <ViewDetails>{`상세보기 >`}</ViewDetails>
         </SecondRow>
       </Wrap>
-      <Picture color={picture} type={type}/>
+      <PictureWrapper size={size}>
+        <Picture color={picture} type={type}/>
+      </PictureWrapper>
     </Wrapper>
 	)
 }
@@ -57,6 +58,15 @@ const Triangle = styled.span`
   bottom: 42px;
 `
 
+const PictureWrapper = styled.div`
+  max-height: ${props => {
+    if (props.size === "big") return "205px";
+    else return "127px";
+  }};
+  overflow: hidden;
+  border-bottom-right-radius: 20px;
+`
+
 const Wrapper = styled.div`
   box-sizing: border-box;
   ${sizeStyles}
@@ -79,7 +89,6 @@ const Wrapper = styled.div`
   display: inline-block;
   box-shadow: 0px 2px 4px rgba(34, 34, 34, 0.2), 0px 1px 10px rgba(34, 34, 34, 0.12), 0px 4px 5px rgba(196, 196, 196, 0.14);
   border-radius: 20px;
-  overflow: hidden;
 `
 
 const Wrap = styled.div`

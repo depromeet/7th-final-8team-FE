@@ -127,7 +127,7 @@ class RecommendedPlaceContainer extends Component {
           this.state.fakeTouristAttractionList.map((item, idx) => 
             <RecommendedPlace 
               placeData={item}
-              size={"medium"}
+              size={"big"}
   
               // TODO: 원래 키값에 인덱스 넣으면 안됨. 바꿔야함.
               key={idx}
