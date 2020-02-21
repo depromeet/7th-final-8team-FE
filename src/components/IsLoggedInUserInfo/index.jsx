@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 class IsLoggedInUserInfo extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   
   render() {
+    // const activeStyle = {
+    //   margin: "auto 0",
+    //   fontFamily: "SpoqaHanSans",
+    //   fontSize: "14px",
+    //   fontWeight: "bold",
+    //   letterSpacing: "-0.55px",
+    //   color: "#5f5f5f",
+    // };
     return (
       <Wrapper>
         <UserInfoWrapper>
@@ -23,10 +32,10 @@ class IsLoggedInUserInfo extends Component {
         </UserInfoWrapper>
         <BookMarkAndReview>
           <BookMarkBtnWrapper>
-            <Button>스크랩</Button>
+            <Link to="/mypage">스크랩</Link>
           </BookMarkBtnWrapper>
           <ReivewBtnWrapper>
-            <Button>리뷰</Button>
+            <Link to="/mypage">리뷰</Link>
           </ReivewBtnWrapper>
         </BookMarkAndReview>
       </Wrapper>
@@ -45,6 +54,7 @@ const Wrapper = styled.div`
   position: absolute;
   top: 62px;
   right: 20px;
+  z-index: 999;
 `
 
 const UserInfoWrapper = styled.div`

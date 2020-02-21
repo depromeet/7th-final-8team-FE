@@ -15,6 +15,8 @@ function RecommendedPlace({ placeData, size,...rest }) {
           <Wrap>
             <FirstRow>
               <Type>{category}</Type>
+              {size === "medium" ? <Triangle /> : null}
+              {size === "medium" ? <CloseBtn><Xbtn>x</Xbtn></CloseBtn> : <BookMark />}
               <BookMark />
             </FirstRow>
             <Name>{name}</Name>
@@ -32,20 +34,23 @@ function RecommendedPlace({ placeData, size,...rest }) {
               <ViewDetails>{`상세보기 >`}</ViewDetails>
             </SecondRow>
           </Wrap>
-          <Picture
-            url={images[0]}
-            // color={picture}
-            type={category}
-          />
+          <PictureWrapper size={size}>
+            <Picture
+              url={images[0]}
+              // color={picture}
+              type={category}
+            />
+          </PictureWrapper>
         </Wrapper>
         )
       }
     </CenterIdContext.Consumer>
 	)
 }
+
 const sizes = {
   big: {width:'360px', height:'346px', margin:'3px 20px 30px 20px'},
-  medium: {width:'346px', height:'268px', margin:'3px 20px 30px 20px'},
+  medium: {width:'320px', height:'268px', margin:'3px 20px 30px 20px'},
   small: {width:'227px', height:'268px', margin:'3px 10px 30px 10px'},
 };
 const sizeStyles = css`
@@ -56,6 +61,26 @@ const sizeStyles = css`
     margin: ${sizes[size].margin};
   `}
 `;
+
+const Triangle = styled.span`
+  width: 0; 
+  height: 0; 
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 22px solid #ffffff;
+  position: relative;
+  bottom: 42px;
+`
+
+const PictureWrapper = styled.div`
+  max-height: ${props => {
+    if (props.size === "big") return "205px";
+    else return "127px";
+  }};
+  overflow: hidden;
+  border-bottom-right-radius: 20px;
+`
+
 const Wrapper = styled.div`
   box-sizing: border-box;
   cursor: pointer;
@@ -79,7 +104,6 @@ const Wrapper = styled.div`
   display: inline-block;
   box-shadow: 0px 2px 4px rgba(34, 34, 34, 0.2), 0px 1px 10px rgba(34, 34, 34, 0.12), 0px 4px 5px rgba(196, 196, 196, 0.14);
   border-radius: 20px;
-  overflow: hidden;
 `
 
 const Wrap = styled.div`
@@ -97,6 +121,21 @@ const BookMark = styled.div`
   background-image: url(${bookmark});
   background-size: cover;
   cursor: pointer;
+`
+
+const CloseBtn = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+`
+
+const Xbtn = styled.div`
+  margin: auto 0;
+  color: #ffffff;
 `
 
 const Type = styled.div`
