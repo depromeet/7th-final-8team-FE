@@ -36,7 +36,7 @@ function RecommendedPlace({ placeData, size,...rest }) {
           </Wrap>
           <PictureWrapper size={size}>
             <Picture
-              url={images[0]}
+              url={images}
               // color={picture}
               type={category}
             />
