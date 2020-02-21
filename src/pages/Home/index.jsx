@@ -12,7 +12,6 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.setCenterId = id => {
-      console.log('id',id);
       this.setState(_ => ({
         centerId: id
       }));
