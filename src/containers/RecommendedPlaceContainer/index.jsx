@@ -20,8 +20,6 @@ function RecommendedPlaceContainer (props) {
   // setLocationList(state.locations.data);
   // const dispatch = useDataDispatch();
   useEffect(_=>{setLocationList(locations)},[locations])
-  // useEffect()
-
   // const handleInfiniteScroll = () => {
   //   const scrollTop = myRef.current.scrollTop;
   //   const clientHeight = myRef.current.clientHeight;
@@ -93,7 +91,6 @@ function RecommendedPlaceContainer (props) {
           <RecommendedPlace 
             placeData={item}
             size={"big"}
-
             // TODO: 원래 키값에 인덱스 넣으면 안됨. 바꿔야함.
             key={idx}
         />)}
@@ -102,7 +99,6 @@ function RecommendedPlaceContainer (props) {
           <RecommendedPlace 
             placeData={item}
             size={"big"}
-
             // TODO: 원래 키값에 인덱스 넣으면 안됨. 바꿔야함.
             key={idx}
         />)}
