@@ -9,9 +9,9 @@ function PlaceDetailRecommendTab({datas}) {
     return <RecommendedPlace size="small" placeData={data} key={idx} style={marginObj}/>
   })
   return (
-    <>
+    <div style={{padding:"40px 39px 40px 40px"}}>
     {cards}
-    </>
+    </div>
   )
 }
 

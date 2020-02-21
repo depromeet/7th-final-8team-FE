@@ -2,7 +2,7 @@ import React from 'react';
 import styled, {ThemeProvider} from 'styled-components';
 import InputText from '../../components/InputText';
 import Button from '../../components/Button';
-import logoNonoPlan from '../../assets/logoNonoPlan.gif';
+import logoNonoPlan from '../../images/logo.gif';
 import LoginModal from '../../components/LoginModal';
 
 const HeaderContainer = styled.header`

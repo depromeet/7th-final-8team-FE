@@ -1,36 +1,50 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
+import {CenterIdContext} from '../../pages/Home/index';
 import bookmark from '../../images/bookmark.png';
 
-function RecommendedPlace({ placeData, size, ...rest }) {
-  const { type, name, rating, numberOfReviews, km, picture, } = placeData;
+function RecommendedPlace({ placeData, size,...rest }) {
+  // const { type, name, rating, numberOfReviews, km, picture, } = placeData;
+  const { locationId, category, name, rating, reviewCount, images} = placeData
+  const km = 5;
 	return (
-    <Wrapper size={size} {...rest}>
-      <Wrap>
-        <FirstRow>
-          <Type>{type}</Type>
-          {size === "medium" ? <Triangle /> : null}
-          {size === "medium" ? <CloseBtn><Xbtn>x</Xbtn></CloseBtn> : <BookMark />}
-        </FirstRow>
-        <Name>{name}</Name>
-        <Row>
-          <StarRating />
-          <StarRating />
-          <StarRating />
-          <StarRating />
-          <StarRating />
-          <NumberRating>{rating}</NumberRating>
-          <NumberOfReviews>{`| 리뷰 ${numberOfReviews}건`}</NumberOfReviews>
-        </Row>
-        <SecondRow>
-          <FromMyLocation>{`내 위치에서 ${km}km`}</FromMyLocation>
-          <ViewDetails>{`상세보기 >`}</ViewDetails>
-        </SecondRow>
-      </Wrap>
-      <PictureWrapper size={size}>
-        <Picture color={picture} type={type}/>
-      </PictureWrapper>
-    </Wrapper>
+    // 검색결과 나타난 추천 관광지를 클릭하면 지도를 해당 관광지를 중심으로 잡아주는 작업을 해야함(21일 1:04 PM)
+    <CenterIdContext.Consumer>
+      {({centerId, setCenterId})=>(
+        <Wrapper size={size} {...rest} onClick={_=>setCenterId(locationId)}>
+          <Wrap>
+            <FirstRow>
+              <Type>{category}</Type>
+              {size === "medium" ? <Triangle /> : null}
+              {size === "medium" ? <CloseBtn><Xbtn>x</Xbtn></CloseBtn> : <BookMark />}
+              <BookMark />
+            </FirstRow>
+            <Name>{name}</Name>
+            <Row>
+              <StarRating />
+              <StarRating />
+              <StarRating />
+              <StarRating />
+              <StarRating />
+              <NumberRating>{rating}</NumberRating>
+              <NumberOfReviews>{`| 리뷰 ${reviewCount}건`}</NumberOfReviews>
+            </Row>
+            <SecondRow>
+              <FromMyLocation>{`내 위치에서 ${km}km`}</FromMyLocation>
+              <ViewDetails>{`상세보기 >`}</ViewDetails>
+            </SecondRow>
+          </Wrap>
+          <PictureWrapper size={size}>
+            <Picture
+              url={images[0]}
+              // color={picture}
+              type={category}
+            />
+          </PictureWrapper>
+        </Wrapper>
+        )
+      }
+    </CenterIdContext.Consumer>
 	)
 }
 
@@ -207,21 +221,22 @@ const ViewDetails = styled.div`
 
 const Picture = styled.div`
   width: ${props => {
-    if (props.type === "관광") return "80%";
-    else if (props.type === "맛집") return "117.5%";
-    else if (props.type === "카페") return "122.5%";
+    if (props.type === "ATTRACTIONS") return "80%";
+    else if (props.type === "RESTAURANT") return "117.5%";
+    else if (props.type === "CAFE") return "122.5%";
   }};
   height: ${props => {
-    if (props.type === "카페") return "221px";
+    if (props.type === "CAFE") return "221px";
     else return "208px";
   }};
   background-color: ${props => props.color};
+  background: url(${props=>props.url});
   background-size: cover;
   margin-top: auto;
   border-radius: ${props => {
-    if (props.type === "관광") return "20px 0px";
-    else if (props.type === "맛집") return "211.5px 211.5px 0 0";
-    else if (props.type === "카페") return "20px 0 220.5px 220.5px";
+    if (props.type === "ATTRACTIONS") return "20px 0px";
+    else if (props.type === "RESTAURANT") return "211.5px 211.5px 0 0";
+    else if (props.type === "CAFE") return "20px 0 220.5px 220.5px";
   }};
   position: relative;
   left: 20.5%;

@@ -1,4 +1,5 @@
 import React,{useEffect} from 'react';
+import styled from 'styled-components';
 
 function KakaoMap({datas, centerLatLng}) {
 	console.log(datas);
@@ -36,10 +37,17 @@ function KakaoMap({datas, centerLatLng}) {
 	
   return (
     <>
-      <div id="map" style={{width: '100vw', height: '100vh', position: 'absolute', top: '0', 'z-index' :'0'}}></div>
+      <DivMap id="map"/>
     </>
   )
 }
+const DivMap = styled.div`
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	z-index: 0
+`;
 
 KakaoMap.defaultProps = {
 	datas:[{ id: 1, lat: "37.546622", lng: "126.949685"}],

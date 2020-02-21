@@ -47,7 +47,6 @@ const DivInfoTab = styled.div`
     color: #5F5F5F;
   }
 `;
-
 const NavTabs = styled.nav`
   ul{
     display:flex;
@@ -56,7 +55,8 @@ const NavTabs = styled.nav`
     flex:1;
     flex-basis:0;
   }
-  button {
+  `;
+  const ButtonNav = styled.button`
     width:100%;
     height:51px;
     background:none;
@@ -66,41 +66,56 @@ const NavTabs = styled.nav`
     line-height: 27px;
     letter-spacing: -0.25px;
     cursor: pointer;
-  }
-  /* 클릭에 따른 focus, active 스타일만 이렇게 되어있는데 향후 tab 상태값에 따라서 밑줄 줘야함 */
-  button:focus, button:active{
-    background:none;
-    border:0;
-    outline:none;
-    box-shadow:0 1px #191919;
-  }
-`;
+    &::after{
+      content:'';
+      visibility: ${props=>(props['data-tab'] === props.currTab) ? 'visible' : 'hidden'};
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:100%;
+      border-bottom:#191919 1px solid;
+      border-top:#191919 1px solid;
+      border-radius:10px;
+    }
+    &:active, &:focus{
+      background:none;
+      border:0;
+      outline:none;
+    }
+  `;
 
-const SectionTabBody = styled.section`
-  /* padding:40px 39px 40px 40px; */
-  padding: ${(props)=> props.isMyPage ? "40px 0 0 0" : "40px 39px 40px 40px"};
+// 내부에서 패딩을 주는 것으로 정책 변경
+// const SectionTabBody = styled.section`
+//   /* padding:40px 39px 40px 40px; */
+//   padding: ${(props)=> props.isMyPage ? "40px 0 0 0" : "40px 39px 40px 40px"};
+// `;
 
-`;
 function DetailModal({infoHeader,tabList, tabBodyList, isMyPage}) {
   // tabList: [ {key:'info',btnValue:'정보'}, {key:'review',btnValue:'리뷰'},]  
   // tabBodyList: [<PlaceDetailInfoTab/>, <DetailReviews/>,]
   console.log(tabList);
   console.log(tabBodyList);
-  const [tab, setTab] = useState(tabList[0].key) // info, review, recommend
+  const [currTab, setCurrTab] = useState(tabList[0].key) // info, review, recommend
   let tabBody;
   for(let i=0; i<tabList.length;i++){
-    if(tab === tabList[i].key) {tabBody = tabBodyList[i]}
+    if(currTab === tabList[i].key) {tabBody = tabBodyList[i]}
   }
   console.log(tabBody)
   
   const onClick=e=>{
-    setTab(e.target.dataset.tab);
+    setCurrTab(e.target.dataset.tab);
   }
 
   const genTab=(tabList)=>{
     return (
       <ul>
-        {tabList.map(tab=><li><button data-tab={tab.key} onClick={e=>onClick(e)}>{tab.btnValue}</button></li>)}
+        {tabList.map(tab=>(
+          <li style={{position:'relative'}}>
+            <ButtonNav data-tab={tab.key} currTab={currTab} onClick={e=>onClick(e)}>
+              {tab.btnValue}
+            </ButtonNav>
+          </li>
+        ))}
       </ul>
     )
   }
