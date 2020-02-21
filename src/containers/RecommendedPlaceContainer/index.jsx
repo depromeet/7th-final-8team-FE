@@ -4,7 +4,7 @@ import RecommendedPlace from 'components/RecommendedPlace';
 import Categories from 'components/Categories';
 import DefaultCard from '../../components/DefaultCard/DefaultCard';
 
-import { useDataState, useDataDispatch, getLocations } from '../../util/DataContext';
+import { useDataState } from '../../util/DataContext';
 import { useEffect,useRef } from 'react';
 
 function RecommendedPlaceContainer (props) {
