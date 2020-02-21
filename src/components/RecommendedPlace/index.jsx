@@ -1,54 +1,46 @@
 import React, { Fragment } from 'react';
 import styled, { css } from 'styled-components';
+import {CenterIdContext} from '../../pages/Home/index';
 import bookmark from '../../images/bookmark.png';
 
-function RecommendedPlace({ placeData, size, ...rest }) {
+function RecommendedPlace({ placeData, size,...rest }) {
   // const { type, name, rating, numberOfReviews, km, picture, } = placeData;
-  const { category, name, rating, reviewCount, images} = placeData
+  const { locationId, category, name, rating, reviewCount, images} = placeData
   const km = 5;
-  // locationId: 1
-  // name: "동백키친"
-  // description: null
-  // category: "RESTAURANT"
-  // subCategory: null
-  // address: "제주특자치도 제주시 한림 수원7 42"
-  // latitude: 100
-  // longitude: 200
-  // phoneNumber: "064-796-1015"
-  // businessHours: "월,화,수,금,토,일 11:00 ~ 20:00↵월,화,수,금 브레이크타임 15:00 ~ 16:00"
-  // detail: null
-  // images: (2) ["http://img1.daumcdn.net/thumb/T680x420/?fname=http…aumcdn.net%2Flocalfiy%2Fsearchregister_1505814184", "http://img1.daumcdn.net/thumb/T680x420/?fname=http…aumcdn.net%2Flocalfiy%2Fsearchregister_1505814184"]
-  // rating: 4.3
-  // reviewCount: 0
-  // bookmarking: false
 	return (
-    <Wrapper size={size} {...rest}>
-      <Wrap>
-        <FirstRow>
-          <Type>{category}</Type>
-          <BookMark />
-        </FirstRow>
-        <Name>{name}</Name>
-        <Row>
-          <StarRating />
-          <StarRating />
-          <StarRating />
-          <StarRating />
-          <StarRating />
-          <NumberRating>{rating}</NumberRating>
-          <NumberOfReviews>{`| 리뷰 ${reviewCount}건`}</NumberOfReviews>
-        </Row>
-        <SecondRow>
-          <FromMyLocation>{`내 위치에서 ${km}km`}</FromMyLocation>
-          <ViewDetails>{`상세보기 >`}</ViewDetails>
-        </SecondRow>
-      </Wrap>
-      <Picture
-        url={images[0]}
-        // color={picture}
-        type={category}
-      />
-    </Wrapper>
+    // 검색결과 나타난 추천 관광지를 클릭하면 지도를 해당 관광지를 중심으로 잡아주는 작업을 해야함(21일 1:04 PM)
+    <CenterIdContext.Consumer>
+      {({centerId, setCenterId})=>(
+        <Wrapper size={size} {...rest} onClick={_=>setCenterId(locationId)}>
+          <Wrap>
+            <FirstRow>
+              <Type>{category}</Type>
+              <BookMark />
+            </FirstRow>
+            <Name>{name}</Name>
+            <Row>
+              <StarRating />
+              <StarRating />
+              <StarRating />
+              <StarRating />
+              <StarRating />
+              <NumberRating>{rating}</NumberRating>
+              <NumberOfReviews>{`| 리뷰 ${reviewCount}건`}</NumberOfReviews>
+            </Row>
+            <SecondRow>
+              <FromMyLocation>{`내 위치에서 ${km}km`}</FromMyLocation>
+              <ViewDetails>{`상세보기 >`}</ViewDetails>
+            </SecondRow>
+          </Wrap>
+          <Picture
+            url={images[0]}
+            // color={picture}
+            type={category}
+          />
+        </Wrapper>
+        )
+      }
+    </CenterIdContext.Consumer>
 	)
 }
 const sizes = {
