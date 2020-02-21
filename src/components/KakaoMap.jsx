@@ -1,22 +1,28 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useRef, useState} from 'react';
 import styled from 'styled-components';
 
 function KakaoMap({datas, centerLatLng}) {
 	console.log(datas);
+	const kakao = window.kakao;
+	const kakaoMap = useRef();
+	const [map,setMap] = useState(null);
+	
 	useEffect(()=>{
 		// ...마운트시 실행할 함수
 		// ...deps 값이 존재한다면 deps값이 설정, 변경될 때마다 실행할 함수
-		const kakao = window.kakao;
-		const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+		// const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 		
 		// 지도를 생성할 때 필요한 기본 옵션 중 level
 		const options = {
 			 //지도의 레벨(확대, 축소 정도)}
 			center: new kakao.maps.LatLng(centerLatLng.lat, centerLatLng.lng),
-			level: 5
+			level: 9
 		}
-		const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+		const initMap = new kakao.maps.Map(kakaoMap.current, options)
+		setMap(initMap); //지도 생성 및 객체 리턴
 		
+	},[kakaoMap])
+	useEffect(()=>{	
 		// // 커스텀 마커 이미지를 사용합니다.
 		// const imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
 		// imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
@@ -37,7 +43,7 @@ function KakaoMap({datas, centerLatLng}) {
 	
   return (
     <>
-      <DivMap id="map"/>
+      <DivMap id="map" ref={kakaoMap}/>
     </>
   )
 }
