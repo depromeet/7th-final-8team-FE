@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import {CenterIdContext} from '../../pages/Home/index';
-import bookmark from '../../images/bookmark.png';
+import bookmark from '../../images/noBookmark.png';
 
 function RecommendedPlace({ placeData, size,...rest }) {
   // const { type, name, rating, numberOfReviews, km, picture, } = placeData;
