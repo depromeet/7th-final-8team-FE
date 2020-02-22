@@ -9,7 +9,8 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Home}/>
-        <Route path="/details" component={Details}/>
+        {/* <Route path="/details" component={Details}/> */}
+        <Route exact path="/details/:locationId" component={Details}/>
         <Route path="/mypage" component={MyPage}/>
       </Switch>
     </BrowserRouter>

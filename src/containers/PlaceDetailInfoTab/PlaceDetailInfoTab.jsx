@@ -73,7 +73,7 @@ PlaceDetailInfoTab.defaultProps = {
   operationHour:"월~금 09:00 ~ 18:00",
   info:"제주맛집, 활전복 해물탕, 활전복뚝배기, 전복죽, 조림, 구이전문, SBS방영 맛집<12.04.29> 아침식사 예약시 9시가능 *예약 필수입니다.",
   facilities:"주차가능",
-  url:"www.rock.com"
+  url:"http://7th-final-8team.s3-website.ap-northeast-2.amazonaws.com/"
 }
 
 export default PlaceDetailInfoTab;

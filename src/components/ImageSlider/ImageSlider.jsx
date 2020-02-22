@@ -1,8 +1,13 @@
-import React, { useRef } from 'react'
+import React, { useRef, useContext, useEffect } from 'react'
 import styled, {css, ThemeProvider} from 'styled-components';
+import { getLocation } from '../../util/DataContext';
+
+import {locationIdContext} from '../../pages/Details/Details.jsx'
 import {darken, lighten} from 'polished';
 import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
+import { useDataState, useDataDispatch } from '../../util/DataContext';
+import PlaceDetail from '../../containers/PlaceDetail/PlaceDetail';
 
 const DivContainer = styled.div`
   position:relative;
@@ -87,8 +92,23 @@ const ButtonArrow = styled.button`
 `;
 
 const ImageSlider = ({datas}) =>{
+  const locationId = useContext(locationIdContext);
+  console.log(locationId);
+
+  const state = useDataState();
+  const dispatch = useDataDispatch();
+  const {loading, data:location, error} = state.location;
+  const fetchData = () =>{
+    getLocation(dispatch,locationId);
+  }
+  useEffect(_=>{getLocation(dispatch,locationId)},[])
+
+  const carousel = useRef();
+
   let arrInit = [null,null,null,null,null];
   let sliderItems;
+  console.log('location',location)
+  // const datas = location.images;
   if (datas.length < 5) {
     sliderItems = arrInit.map((item,idx)=>!datas[idx] ? datas[idx-datas.length] : datas[idx])
   } else {
@@ -96,26 +116,33 @@ const ImageSlider = ({datas}) =>{
   }
   console.log('sliderItems',sliderItems)
   const handleOnDragStart = (e) => e.preventDefault()
-  const imgSlider = sliderItems.map((item,idx)=><DivImageItem key={idx} onDragStart={handleOnDragStart} url={item}></DivImageItem>)
-  const carousel = useRef();
-    return (
-      <DivContainer>
-        <DivSlider>
-          <AliceCarousel
-            mouseTrackingEnabled
-            items={imgSlider}
-            responsive={ {0: { items: 5 }} }
-            dotsDisabled={true}
-            buttonsDisabled={true}
-            ref={carousel}
-          />
-          <ThemeProvider theme={{palette}}>
-            <ButtonArrow direction="left" color="default" onClick={() => carousel.current.slidePrev()}/>
-            <ButtonArrow direction="right" color="default" onClick={() => carousel.current.slideNext()}/>
-          </ThemeProvider>
-        </DivSlider>
-      </DivContainer>
-    )
+  
+	if(loading) return <div>로딩중...</div>;
+	if(error) return <div>에러가 발생했습니다.</div>;
+	if(!location) return <button onClick={fetchData}>불러오기</button>;
+  return (
+    <DivContainer>
+      <DivSlider>
+        <AliceCarousel
+          mouseTrackingEnabled
+          items={
+            ((location.images.length < 5)
+              ? arrInit.map((item,idx,arr)=>location.images[idx%location.images.length])
+              : location.images
+            ).map((item,idx)=><DivImageItem key={idx} onDragStart={handleOnDragStart} url={item}></DivImageItem>)
+          }
+          responsive={ {0: { items: 5 }} }
+          dotsDisabled={true}
+          buttonsDisabled={true}
+          ref={carousel}
+        />
+        <ThemeProvider theme={{palette}}>
+          <ButtonArrow direction="left" color="default" onClick={() => carousel.current.slidePrev()}/>
+          <ButtonArrow direction="right" color="default" onClick={() => carousel.current.slideNext()}/>
+        </ThemeProvider>
+      </DivSlider>
+    </DivContainer>
+  )
 }
 
 ImageSlider.defaultProps = {
