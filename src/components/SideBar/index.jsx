@@ -1,20 +1,12 @@
-<<<<<<< HEAD
-import React, { Fragment, Component } from 'react';
+import React from 'react';
 import RecommendedPlaceContainer from '../../containers/RecommendedPlaceContainer';
 import styled from 'styled-components';
 import logo from '../../images/logo.gif';
 import Cramp from '../Cramp';
-=======
-import React from 'react';
-import styled from 'styled-components';
-import logo from '../../images/logo.gif';
-import Cramp from '../../components/Cramp';
 // import SearchInput from '../../containers/SearchInput/SearchInput';
 import AddressSearchInput from '../AddressSearchInput/AddressSearchInput';
-import RecommendedPlaceContainer from '../../containers/RecommendedPlaceContainer';
 import { useDataState, useDataDispatch, getLocations } from '../../util/DataContext';
 import { useState } from 'react';
->>>>>>> develop
 
 function SideBar(props) {
   const [isClickedFoldBtn, SetIsClickedFoldBtn] = useState(false)
