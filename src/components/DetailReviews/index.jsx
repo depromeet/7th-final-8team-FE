@@ -51,26 +51,15 @@ class DetailReviews extends Component {
     this.setState({ isClickedWriteReivew: false });
   }
 
-  // sort = (selected) => {
-  //   let tempData = this.state.Reviews.splice(0);
-
-  //   if (selected === "평점높은순") {
-  //     tempData = tempData.sort((a, b) => a.Rating < b.Rating ? 1 : -1);
-      
-  //     this.setState({ Reviews: tempData });
-  //   } 
-  //   else if (selected === "최신순") {
-  //     tempData = tempData.sort((a, b) => Number(a.Date) < Number(b.Date) ? 1 : -1);
-  //                                         // 2020.01.01 < 2020.02.01
-  //     this.setState({ Reviews: tempData });
-  //   }
-  // }
-
   // 임시로 가짜 데이터 추가
   handleViewMore = () => {
     let tempData = this.state.Reviews.splice(0);
     tempData.push(
-      {Name: "안뇽안뇽안뇽", Date: "2020.01.23", Rating: 9.9, Sentence: "발휘하기 목숨이 이상 구하지 행복스럽"}, 
+      {username: "안뇽안뇽안뇽", lastUpdateAt: "2020-01-23", rating: 1, content: "발휘하기 목숨이 이상 구하지 행복스럽"}, 
+      {username: "동해물과", lastUpdateAt: "2020-02-23", rating: 3, content: "발휘하기 목숨이 이상 구하지 행복스럽발휘하기 목숨이 이상 구하지 행복스럽"}, 
+      {username: "백두산이", lastUpdateAt: "2020-03-23", rating: 2, content: "발휘하기 목숨이 이상 구하지 행복스럽발휘하기 목숨이 이상 구하지 행복스럽발휘하기 목숨이 이상 구하지 행복스럽"}, 
+      {username: "마르고", lastUpdateAt: "2020-04-23", rating: 4, content: "발휘하기 목숨이 이상 구하지 행복스럽발휘하기 목숨이 이상 구하지 행복스럽발휘하기 목숨이 이상 구하지 행복스럽발휘하기 목숨이 이상 구하지 행복스럽"}, 
+      {username: "닳도록", lastUpdateAt: "2020-05-23", rating: 5, content: "발휘하기 목숨이 이상 구하지 행복스럽발휘하기 목숨이 이상 구하지 행복스럽발휘하기 목숨이 이상 구하지 행복스럽발휘하기 목숨이 이상 구하지 행복스럽발휘하기 목숨이 이상 구하지 행복스럽"}, 
     );
     this.setState({ Reviews: tempData });
   }
@@ -164,7 +153,7 @@ const Sort = styled.select`
   letter-spacing: -0.55px;
   color: #808080;
   border: 0;
-  background-color: white;
+  background-color: transparent;
   position: relative;
   top: 8px;
   margin-left: 40px;
@@ -183,6 +172,8 @@ const SortBtn = styled.div`
   background-size: cover;
   position: relative;
   top: 14px;
+  right: 14px;
+  z-index: -1;
 `
 
 const Select = styled.div`
