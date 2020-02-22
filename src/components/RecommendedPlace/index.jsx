@@ -242,7 +242,7 @@ const Picture = styled.div`
     else return "208px";
   }};
   background-color: ${props => props.color};
-  background: url(${props=>props.url});
+  background: url(${props=>props.url[0]});
   background-size: cover;
   margin-top: auto;
   border-radius: ${props => {
