@@ -2,11 +2,16 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import {CenterIdContext} from '../../pages/Home/index';
 import bookmark from '../../images/noBookmark.png';
+import { useHistory } from 'react-router-dom';
 
 function RecommendedPlace({ placeData, size,...rest }) {
   // const { type, name, rating, numberOfReviews, km, picture, } = placeData;
-  const { locationId, category, name, rating, reviewCount=0, picture} = placeData
+  const { locationId, category, name, rating, reviewCount=0, picture, images} = placeData
   const km = 5;
+  const history = useHistory();
+  const handleClick=(id)=>{
+    history.push(`/details/${id}`);
+  }
 	return (
     // 검색결과 나타난 추천 관광지를 클릭하면 지도를 해당 관광지를 중심으로 잡아주는 작업을 해야함(21일 1:04 PM)
     <CenterIdContext.Consumer>
@@ -32,14 +37,16 @@ function RecommendedPlace({ placeData, size,...rest }) {
             </Row>
             <SecondRow>
               <FromMyLocation>{`내 위치에서 ${km}km`}</FromMyLocation>
-              <ViewDetails>{`상세보기 >`}</ViewDetails>
+              <ViewDetails
+                onClick={_=>handleClick(locationId)}
+              >{`상세보기 >`}</ViewDetails>
             </SecondRow>
           </Wrap>
           <PictureWrapper size={size}>
             <Picture
-              url={picture}
+              url={images[0]}
               // color={picture}
-              type={category}
+              category={category}
             />
           </PictureWrapper>
         </Wrapper>
@@ -233,12 +240,12 @@ const ViewDetails = styled.div`
 
 const Picture = styled.div`
   width: ${props => {
-    if (props.type === "ATTRACTIONS") return "80%";
-    else if (props.type === "RESTAURANT") return "117.5%";
-    else if (props.type === "CAFE") return "122.5%";
+    if (props.category === "ATTRACTIONS") return "80%";
+    else if (props.category === "RESTAURANT") return "117.5%";
+    else if (props.category === "CAFE") return "122.5%";
   }};
   height: ${props => {
-    if (props.type === "CAFE") return "221px";
+    if (props.category === "CAFE") return "221px";
     else return "208px";
   }};
   background-color: ${props => props.color};
@@ -246,9 +253,9 @@ const Picture = styled.div`
   background-size: cover;
   margin-top: auto;
   border-radius: ${props => {
-    if (props.type === "ATTRACTIONS") return "20px 0px";
-    else if (props.type === "RESTAURANT") return "211.5px 211.5px 0 0";
-    else if (props.type === "CAFE") return "20px 0 220.5px 220.5px";
+    if (props.category === "ATTRACTIONS") return "20px 0px";
+    else if (props.category === "RESTAURANT") return "211.5px 211.5px 0 0";
+    else if (props.category === "CAFE") return "20px 0 220.5px 220.5px";
   }};
   position: relative;
   left: 20.5%;
