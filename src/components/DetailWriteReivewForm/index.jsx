@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 
 class DetailWriteReviewForm extends Component {
@@ -10,6 +11,17 @@ class DetailWriteReviewForm extends Component {
       reviewLength: 0,
       rating: 0,
     }
+  }
+
+  // locationId에 리뷰 작성
+  postLocationReivews = (content, locationId=0, rating, lastUpdateAt, reviewId, userId, username) => {
+    const endpoint = `http://34.97.253.140/locations/${locationId}/reviews`;
+    // ?content=${content}&lastUpdateAt=${lastUpdateAt}&locationId=${locationId}&rating=${rating}&reviewId=${reviewId}&userId=${userId}&username=${username}
+    const config = { headers: { 'Content-Type': 'application/json'} };
+    const getLocationReivews = axios.post(endpoint, config);
+    getLocationReivews.then(res => {
+      console.log(res);
+    }).catch(err => console.log(err));
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -73,7 +85,11 @@ class DetailWriteReviewForm extends Component {
                 <CancelText>취소</CancelText>
               </Cancel>
               <Confirm>
-                <ConfirmText>확인</ConfirmText>
+                <ConfirmText onClick={() => {
+                  this.postLocationReivews(this.state.reviewContents, 0, this.state.rating);
+                  this.props.handleToFalseWriteReivew();}}>
+                  {"확인"}
+                </ConfirmText>
               </Confirm>
             </Footer>
           </Box>
