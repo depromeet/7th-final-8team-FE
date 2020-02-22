@@ -6,6 +6,7 @@ import DetailReviews from '../../components/DetailReviews';
 import PlaceDetailRecommendTab from '../PlaceDetailRecommendTab/PlaceDetailRecommendTab';
 import { locationIdContext } from '../../pages/Details/Details';
 import { useDataState, useDataDispatch, getLocation } from '../../util/DataContext';
+import DetailShimmer from '../../components/LoadingShimmer/DetailShimmer';
 
 const ButtonBookmark = styled.button`
   position:absolute;
@@ -65,7 +66,7 @@ function PlaceDetail({type, name, rating, numberOfReviews, km,}) {
   const {loading, data:location, error} = state.location;
   useEffect(_=>{getLocation(dispatch,locationId)},[])
 
-	if(loading) return <div>로딩중...</div>;
+	if(loading) return <DetailShimmer/>;
 	if(error) return <div>에러가 발생했습니다.</div>;
 	if(!location) return <></>;
   // const tabList= [{key:'info',btnValue:'정보'}, {key:'review',btnValue:'리뷰'},{key:'recommend',btnValue:'추천'}]  
@@ -86,7 +87,8 @@ function PlaceDetail({type, name, rating, numberOfReviews, km,}) {
           info={location.description}
           facilities={location.detail}
           url={undefined}
-        />, <DetailReviews/>, <PlaceDetailRecommendTab/>]
+        />,
+        <DetailReviews/>, <PlaceDetailRecommendTab/>]
       }
     />
   )

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
 
-const ArticlePlaceDetail = styled.article`
+export const ArticlePlaceDetail = styled.article`
   align-items: center; 
   border-radius:20px;
   box-shadow: 0px 3px 5px rgba(196, 196, 196, 0.2), 0px 1px 18px rgba(34, 34, 34, 0.12), 0px 6px 10px rgba(196, 196, 196, 0.14);
@@ -19,7 +19,7 @@ const ArticlePlaceDetail = styled.article`
   z-index:1;
 `;
 
-const DivInfoTab = styled.div`
+export const DivInfoTab = styled.div`
   text-align:center;
   line-height:42px;
   position:relative;
@@ -47,7 +47,7 @@ const DivInfoTab = styled.div`
     color: #5F5F5F;
   }
 `;
-const NavTabs = styled.nav`
+export const NavTabs = styled.nav`
   ul{
     display:flex;
   }

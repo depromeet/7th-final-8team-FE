@@ -7,15 +7,15 @@ import {darken, lighten} from 'polished';
 import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
 import { useDataState, useDataDispatch } from '../../util/DataContext';
-import PlaceDetail from '../../containers/PlaceDetail/PlaceDetail';
+import ImgSliderShimmer from '../LoadingShimmer/ImgSliderShimmer';
 
-const DivContainer = styled.div`
+export const DivContainer = styled.div`
   position:relative;
   width:100%;
   height:420px;
 `;
 
-const DivSlider = styled.div`
+export const DivSlider = styled.div`
   position:absolute;
   top:0;
   left:calc((100% - 2100px) / 2);
@@ -117,7 +117,7 @@ const ImageSlider = ({datas}) =>{
   console.log('sliderItems',sliderItems)
   const handleOnDragStart = (e) => e.preventDefault()
   
-	if(loading) return <div>로딩중...</div>;
+	if(loading) return <ImgSliderShimmer/>;
 	if(error) return <div>에러가 발생했습니다.</div>;
 	if(!location) return <button onClick={fetchData}>불러오기</button>;
   return (
