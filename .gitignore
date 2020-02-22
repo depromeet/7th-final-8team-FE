@@ -30,3 +30,5 @@ yarn-error.log*
 
 # 용도 폐기된 컴포넌트
 /src/components/PlaceCard/
+# 테스트 및 개발 참고 컴포넌트
+/src/components/KakaoMap1.jsx

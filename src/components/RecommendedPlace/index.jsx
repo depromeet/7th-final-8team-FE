@@ -35,7 +35,7 @@ function RecommendedPlace({ placeData, size,...rest }) {
           </Wrap>
           <PictureWrapper size={size}>
             <Picture
-              url={images[0]}
+              url={images}
               // color={picture}
               type={category}
             />
@@ -82,6 +82,7 @@ const PictureWrapper = styled.div`
 
 const Wrapper = styled.div`
   box-sizing: border-box;
+  cursor: pointer;
   ${sizeStyles}
   
   /* margin: 3px 20px 30px 20px; */
