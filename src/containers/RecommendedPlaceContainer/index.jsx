@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import RecommendedPlace from '../../components/RecommendedPlace';
 import Categories from '../../components/Categories';
-<<<<<<< HEAD
-=======
 import DefaultCard from '../../components/DefaultCard/DefaultCard';
->>>>>>> develop
 
 import { useDataState } from '../../util/DataContext';
 import { useEffect,useRef } from 'react';

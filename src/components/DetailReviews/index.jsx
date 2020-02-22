@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-<<<<<<< HEAD
-import DetailReview from '../DetailReview';
-=======
 import DetailReview from '../../components/DetailReview';
->>>>>>> develop
 import select from '../../images/select.png';
 import DetailWriteReviewForm from '../DetailWriteReivewForm';
 import writeReviewIcon from '../../images/writeReview.png';

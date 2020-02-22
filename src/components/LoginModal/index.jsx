@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-<<<<<<< HEAD
-import KakaoLogin from '../KakaoLogin';
-=======
 import KakaoLogin from '../../components/KakaoLogin';
 import IsLoggedInUserInfo from '../IsLoggedInUserInfo';
->>>>>>> develop
 
 class LoginModal extends Component {
   constructor(props) {
