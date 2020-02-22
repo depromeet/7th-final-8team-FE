@@ -5,7 +5,7 @@ import bookmark from '../../images/noBookmark.png';
 
 function RecommendedPlace({ placeData, size,...rest }) {
   // const { type, name, rating, numberOfReviews, km, picture, } = placeData;
-  const { locationId, category, name, rating, reviewCount=0, images} = placeData
+  const { locationId, category, name, rating, reviewCount=0, picture} = placeData
   const km = 5;
 	return (
     // 검색결과 나타난 추천 관광지를 클릭하면 지도를 해당 관광지를 중심으로 잡아주는 작업을 해야함(21일 1:04 PM)
@@ -37,7 +37,7 @@ function RecommendedPlace({ placeData, size,...rest }) {
           </Wrap>
           <PictureWrapper size={size}>
             <Picture
-              url={images}
+              url={picture}
               // color={picture}
               type={category}
             />
@@ -242,7 +242,7 @@ const Picture = styled.div`
     else return "208px";
   }};
   background-color: ${props => props.color};
-  background: url(${props=>props.url[0]});
+  background: url(${props=>props.url});
   background-size: cover;
   margin-top: auto;
   border-radius: ${props => {
