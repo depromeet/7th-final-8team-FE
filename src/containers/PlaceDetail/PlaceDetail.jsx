@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import DetailModal from '../../components/DetailModal/DetailModal';
 import PlaceDetailInfoTab from '../PlaceDetailInfoTab/PlaceDetailInfoTab';
 import DetailReviews from '../../components/DetailReviews';
 import PlaceDetailRecommendTab from '../PlaceDetailRecommendTab/PlaceDetailRecommendTab';
+import { locationIdContext } from '../../pages/Details/Details';
+import { useDataState, useDataDispatch, getLocation } from '../../util/DataContext';
 
 const ButtonBookmark = styled.button`
   position:absolute;
@@ -55,11 +57,38 @@ const PlaceInfoHeader =({type, name, rating, numberOfReviews, km,})=> (<>
 </>);
 
 function PlaceDetail({type, name, rating, numberOfReviews, km,}) {
-  const tabList= [ {key:'info',btnValue:'정보'}, {key:'review',btnValue:'리뷰'},{key:'recommend',btnValue:'추천'}]  
-  const tabBodyList= [<PlaceDetailInfoTab/>, <DetailReviews/>, <PlaceDetailRecommendTab/>]
-  const placeInfo = <PlaceInfoHeader type={type} name={name} rating={rating} numberOfReviews={numberOfReviews} km={km}/>
+  const locationId = useContext(locationIdContext);
+  console.log(locationId);
+
+  const state = useDataState();
+  const dispatch = useDataDispatch();
+  const {loading, data:location, error} = state.location;
+  useEffect(_=>{getLocation(dispatch,locationId)},[])
+
+	if(loading) return <div>로딩중...</div>;
+	if(error) return <div>에러가 발생했습니다.</div>;
+	if(!location) return <></>;
+  // const tabList= [{key:'info',btnValue:'정보'}, {key:'review',btnValue:'리뷰'},{key:'recommend',btnValue:'추천'}]  
+  // const tabBodyList= [<PlaceDetailInfoTab/>, <DetailReviews/>, <PlaceDetailRecommendTab/>]
+  // const placeInfo = <PlaceInfoHeader type={type} name={name} rating={rating} numberOfReviews={numberOfReviews} km={km}/>
+  console.log(location)
   return (
-    <DetailModal infoHeader={placeInfo} tabList={tabList} tabBodyList={tabBodyList}/>
+    <DetailModal
+      infoHeader={
+        <PlaceInfoHeader type={location.category} name={location.name} rating={location.rating} numberOfReviews={location.reviewCount} km={5}/>
+      }
+      tabList={[{key:'info',btnValue:'정보'}, {key:'review',btnValue:'리뷰'},{key:'recommend',btnValue:'추천'}]  }
+      tabBodyList={
+        [<PlaceDetailInfoTab
+          address={location.address}
+          tel={location.phoneNumber}
+          operationHour={location.businessHours}
+          info={location.description}
+          facilities={location.detail}
+          url={undefined}
+        />, <DetailReviews/>, <PlaceDetailRecommendTab/>]
+      }
+    />
   )
 }
 

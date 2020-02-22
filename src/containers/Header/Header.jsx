@@ -36,7 +36,7 @@ function Header() {
     <HeaderContainer>
         <ImgLogo src={logoNonoPlan} alt="Nonoplan 로고"/>
         <DivSearchInput>
-          <InputText isLabel={false} size="default"
+          <InputText isLabel={false} size="default" placeholder="분위기 좋은 카페는 어때요?"
             style={{minWidth:"100px",maxWidth:"460px",width:"100%",margin:"0 auto"}}/>
         </DivSearchInput>
         
