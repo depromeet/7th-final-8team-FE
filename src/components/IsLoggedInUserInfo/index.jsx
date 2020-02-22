@@ -72,7 +72,7 @@ const Picture = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: #f39c12;
+  background-color: #efefef;
 `
 
 const TextWrapper = styled.div`

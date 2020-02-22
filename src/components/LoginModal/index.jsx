@@ -9,7 +9,7 @@ class LoginModal extends Component {
 
     this.state = {
       isClickedLoginBtn: false,
-      isLoggedIn: true,
+      isAuthorization: false,
       isClickedUserInfo: false,
     }
   }
@@ -30,8 +30,12 @@ class LoginModal extends Component {
     this.setState({ isClickedUserInfo: false });
   }
 
+  login = () => {
+    this.setState({ isAuthorization: true});
+  }
+
   logout = () => {
-    this.setState({ isLoggedIn: false });
+    this.setState({ isAuthorization: false });
   }
 
   loginBtn = () => {
@@ -57,7 +61,7 @@ class LoginModal extends Component {
   render() {
     return (
       <Wrapper>
-        {this.state.isLoggedIn ? this.userInfo() : this.loginBtn()}
+        {this.state.isAuthorization ? this.userInfo() : this.loginBtn()}
         <ModalContainer isClickedLoginBtn={this.state.isClickedLoginBtn}>
           <Modal>
             <CloseBtn onClick={this.handleLoginToFalse}>x</CloseBtn>
@@ -67,7 +71,7 @@ class LoginModal extends Component {
             </KakaoLoginContainer>
           </Modal>
         </ModalContainer>
-        {this.state.isLoggedIn && this.state.isClickedUserInfo && 
+        {this.state.isAuthorization && this.state.isClickedUserInfo && 
         <IsLoggedInUserInfo logout={this.logout} />}
       </Wrapper>
     );
@@ -88,7 +92,7 @@ const ProfilePicture = styled.div`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #f39c12;
+  background-color: #efefef;
 `
 
 const UserInfoOpenBtn = styled.div`

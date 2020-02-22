@@ -5,7 +5,7 @@ import bookmark from '../../images/bookmark.png';
 
 function RecommendedPlace({ placeData, size,...rest }) {
   // const { type, name, rating, numberOfReviews, km, picture, } = placeData;
-  const { locationId, category, name, rating, reviewCount, images} = placeData
+  const { locationId, category, name, rating, reviewCount=0, images} = placeData
   const km = 5;
 	return (
     // 검색결과 나타난 추천 관광지를 클릭하면 지도를 해당 관광지를 중심으로 잡아주는 작업을 해야함(21일 1:04 PM)
@@ -20,11 +20,13 @@ function RecommendedPlace({ placeData, size,...rest }) {
             </FirstRow>
             <Name>{name}</Name>
             <Row>
-              <StarRating />
-              <StarRating />
-              <StarRating />
-              <StarRating />
-              <StarRating />
+              <Stars>
+                <FirstStar rating={rating}>★</FirstStar>
+                <SecondStar rating={rating}>★</SecondStar>
+                <ThirdStar rating={rating}>★</ThirdStar>
+                <FourthStar rating={rating}>★</FourthStar>
+                <FifthStar rating={rating}>★</FifthStar>
+              </Stars>
               <NumberRating>{rating}</NumberRating>
               <NumberOfReviews>{`| 리뷰 ${reviewCount}건`}</NumberOfReviews>
             </Row>
@@ -61,6 +63,41 @@ const sizeStyles = css`
   `}
 `;
 
+const Star = styled.div`
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+  text-align: center;
+  font-size: 19px;
+  color: #efefef;
+  transition: 0.5s;
+`
+
+const Stars = styled.div`
+  display: flex;
+  margin-right: 8px;
+`
+
+const FirstStar = styled(Star)`
+  color: ${props => props.rating >= 1 ? "#ffd338" : "#efefef"};
+`
+
+const SecondStar = styled(Star)`
+  color: ${props => props.rating >= 2 ? "#ffd338" : "#efefef"};
+`
+
+const ThirdStar = styled(Star)`
+  color: ${props => props.rating >= 3 ? "#ffd338" : "#efefef"};
+`
+
+const FourthStar = styled(Star)`
+  color: ${props => props.rating >= 4 ? "#ffd338" : "#efefef"};
+`
+
+const FifthStar = styled(Star)`
+  color: ${props => props.rating >= 5 ? "#ffd338" : "#efefef"};
+`
+
 const Triangle = styled.span`
   width: 0; 
   height: 0; 
@@ -82,24 +119,7 @@ const PictureWrapper = styled.div`
 
 const Wrapper = styled.div`
   box-sizing: border-box;
-  cursor: pointer;
   ${sizeStyles}
-  
-  /* margin: 3px 20px 30px 20px; */
-  /* width: ${props => {
-    if (props.size === "big") return "360px";
-    else if (props.size === "medium") return "320px";
-    else if (props.size === "small") return "227px";
-    else console.log("사이즈를 잘못 넣으셨습니다. big, medium, small만 가능합니다.");
-  }};
-  height: ${props => {
-    if (props.size === "big") return "346px";
-    else if (props.size === "medium" || "small") return "268px";
-    else console.log("사이즈를 잘못 넣으셨습니다. big, medium, small만 가능합니다.");
-  }};
-  margin: ${props=>{
-    if (props.size === "small") return "3px 10px 30px 10px";
-  }} */
   display: inline-block;
   box-shadow: 0px 2px 4px rgba(34, 34, 34, 0.2), 0px 1px 10px rgba(34, 34, 34, 0.12), 0px 4px 5px rgba(196, 196, 196, 0.14);
   border-radius: 20px;
@@ -177,15 +197,7 @@ const NumberRating = styled.div`
   letter-spacing: -0.2px;
 `
 
-const StarRating = styled.div`
-  width: 16px;
-  height: 16px;
-  background-color: #ffd338;
-  margin-right: 4px;
-`
-
 const NumberOfReviews = styled.div`
-  width: 44px;
   height: 20px;
   font-family: SpoqaHanSans;
   font-size: 12px;
