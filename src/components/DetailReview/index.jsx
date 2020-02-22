@@ -91,7 +91,7 @@ const Picture = styled.div`
   width: 62px;
   height: 62px;
   border-radius: 50%;
-  background-color: #1abc9c;
+  background-color: #efefef;
   margin-right: 16px;
 `
 
@@ -107,6 +107,7 @@ const UserName = styled.div`
   font-weight: bold;
   letter-spacing: -0.25px;
   color: #191919;
+  margin-bottom: 5px;
 `
 
 const BeWrittenDate = styled.div`

@@ -20,6 +20,7 @@ function RecommendedPlaceContainer (props) {
   // setLocationList(state.locations.data);
   // const dispatch = useDataDispatch();
   useEffect(_=>{setLocationList(locations)},[locations])
+
   // const handleInfiniteScroll = () => {
   //   const scrollTop = myRef.current.scrollTop;
   //   const clientHeight = myRef.current.clientHeight;
@@ -29,15 +30,15 @@ function RecommendedPlaceContainer (props) {
   //   if (scrollHeight === scrollTop + clientHeight) {
   //     // TODO: 전체, 관광지, 카페에도 무한스크롤 적용해야 함.
   //     // fakeRestaurantList 배열에 다음 데이터 추가
-  //     const originalData = this.state.fakeTouristAttractionList.splice(0);
+      
+  //     const originalData = locationList.content.splice(0);
   //     originalData.push(
-  //       {type: '맛집', name: '라델리', rating: 4.3, numberOfReviews: 7, picture:'#1abc9c'}, 
-  //       {type: '관광', name: '돌바위', rating: 4.1, numberOfReviews: 6, picture:'#2ecc71'}, 
-  //       {type: '카페', name: '투썸', rating: 3.9, numberOfReviews: 5, picture:'#3498db'}, 
+  //       {locationId: 4, name: "아오", description: "설명이다.", category: "ATTRACTIONS", subCategory: null, address: "제주특별자치도 서귀포시 중정로 22", latitude: 130, longitude: 210, phoneNumber: null, businessHours: null, detail: null, images: "https://img1.daumcdn.net/thumb/T680x420/?fname=http%3A%2F%2Ft1.daumcdn.net%2Fplace%2F6B250958205C498F8CEFBACD1B991C1A", rating: 4, reviewCount: 0, bookmarking: true}
   //     );
-  //     // this.setState({ fakeTouristAttractionList: originalData });
+  //     setLocationList(originalData);
   //   }
   // }
+
   const handleAllList = () => {
     setIsSelectedTouristAttraction(false);
     setIsSelectedRestaurant(false);
@@ -246,7 +247,7 @@ export default RecommendedPlaceContainer;
 
 const RecommendedPlaces = styled.div`
   height: 100vh;
-  height: ${props => `${props.originalHeight - 142}` + "px"};
+  height: ${props => `${props.originalHeight - 190}` + "px"};
   overflow: scroll;
   overflow-x: hidden;
 `

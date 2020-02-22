@@ -17,7 +17,6 @@ function RecommendedPlace({ placeData, size,...rest }) {
               <Type>{category}</Type>
               {size === "medium" ? <Triangle /> : null}
               {size === "medium" ? <CloseBtn><Xbtn>x</Xbtn></CloseBtn> : <BookMark />}
-              <BookMark />
             </FirstRow>
             <Name>{name}</Name>
             <Row>
