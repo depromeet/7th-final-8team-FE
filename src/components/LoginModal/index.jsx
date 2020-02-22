@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+<<<<<<< HEAD
 import KakaoLogin from '../KakaoLogin';
+=======
+import KakaoLogin from '../../components/KakaoLogin';
+import IsLoggedInUserInfo from '../IsLoggedInUserInfo';
+>>>>>>> develop
 
 class LoginModal extends Component {
   constructor(props) {
@@ -8,6 +13,8 @@ class LoginModal extends Component {
 
     this.state = {
       isClickedLoginBtn: false,
+      isAuthorization: false,
+      isClickedUserInfo: false,
     }
   }
 
@@ -18,13 +25,47 @@ class LoginModal extends Component {
   handleLoginToFalse = () => {
     this.setState({ isClickedLoginBtn: false });
   }
+
+  handleUserInfo = () => {
+    this.setState({ isClickedUserInfo: true });
+  }
+
+  handleUserInfoToFalse = () => {
+    this.setState({ isClickedUserInfo: false });
+  }
+
+  login = () => {
+    this.setState({ isAuthorization: true});
+  }
+
+  logout = () => {
+    this.setState({ isAuthorization: false });
+  }
+
+  loginBtn = () => {
+    return (
+      <LoginContainer isUsedMainPage={this.props.isMainPage} onClick={this.handleLogin}>
+        <Login>로그인</Login>
+      </LoginContainer>
+    )
+  }
+
+  userInfo = () => {
+    return (
+      <UserProfilePictureContainer isMainPage={this.props.isMainPage}>
+        <ProfilePicture />
+        {this.state.isClickedUserInfo ?
+        <UserInfoCloseBtn onClick={this.handleUserInfoToFalse} /> 
+        : 
+        <UserInfoOpenBtn onClick={this.handleUserInfo} />}
+      </UserProfilePictureContainer>
+    )
+  }
   
   render() {
     return (
-      <>
-        <LoginContainer>
-          <Login onClick={this.handleLogin}>로그인</Login>
-        </LoginContainer>
+      <Wrapper>
+        {this.state.isAuthorization ? this.userInfo() : this.loginBtn()}
         <ModalContainer isClickedLoginBtn={this.state.isClickedLoginBtn}>
           <Modal>
             <CloseBtn onClick={this.handleLoginToFalse}>x</CloseBtn>
@@ -34,13 +75,50 @@ class LoginModal extends Component {
             </KakaoLoginContainer>
           </Modal>
         </ModalContainer>
-      </>
+        {this.state.isAuthorization && this.state.isClickedUserInfo && 
+        <IsLoggedInUserInfo logout={this.logout} />}
+      </Wrapper>
     );
   }
 }
 
+const UserProfilePictureContainer = styled.div`
+  width: 44px;
+  height: 30px;
+  position: ${props => props.isMainPage ? "absolute" : ""};
+  top: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+`
+
+const ProfilePicture = styled.div`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #efefef;
+`
+
+const UserInfoOpenBtn = styled.div`
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #111111;
+  margin: auto 0;
+  cursor: pointer;
+`
+
+const UserInfoCloseBtn = styled(UserInfoOpenBtn)`
+  transform: rotate(180deg);
+`
+
+const Wrapper = styled.div`
+  margin: auto 0;
+`
+
 const LoginContainer = styled.div`
-  position: absolute;
+  position: ${props => props.isUsedMainPage ? "absolute" : ""};
   top: 20px;
   right: 20px;
   width: 70px;
@@ -50,6 +128,7 @@ const LoginContainer = styled.div`
   display: flex;
   justify-content: center;
   cursor: pointer;
+  z-index: 10;
 `
 
 const Login = styled.div`
@@ -61,8 +140,9 @@ const ModalContainer = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0,0,0,0.16);
-  position: absolute;
+  position: fixed;
   top: 0;
+  left: 0;
   justify-content: center;
   display: ${props => props.isClickedLoginBtn ? "flex" : "none"};
 `

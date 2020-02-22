@@ -14,14 +14,14 @@ class DetailReview extends Component {
           </Profile>
           <Contents>
             <Rating>
-              <Number>{this.props.rating}</Number>
               <Stars>
-                <Star />
-                <Star />
-                <Star />
-                <Star />
-                <Star />
+                <FirstStar rating={this.props.rating}>★</FirstStar>
+                <SecondStar rating={this.props.rating}>★</SecondStar>
+                <ThirdStar rating={this.props.rating}>★</ThirdStar>
+                <FourthStar rating={this.props.rating}>★</FourthStar>
+                <FifthStar rating={this.props.rating}>★</FifthStar>
               </Stars>
+              <Number>{this.props.rating}</Number>
             </Rating>
             <Sentence>{this.props.sentence}</Sentence>
           </Contents>
@@ -30,13 +30,44 @@ class DetailReview extends Component {
   }
 }
 
-// 리뷰
+const Star = styled.div`
+  width: 19px;
+  height: 19px;
+  margin-right: 2px;
+  text-align: center;
+  font-size: 22px;
+  color: #efefef;
+  transition: 0.5s;
+`
+
+const FirstStar = styled(Star)`
+  color: ${props => props.rating >= 1 ? "#ffd338" : "#efefef"};
+`
+
+const SecondStar = styled(Star)`
+  color: ${props => props.rating >= 2 ? "#ffd338" : "#efefef"};
+`
+
+const ThirdStar = styled(Star)`
+  color: ${props => props.rating >= 3 ? "#ffd338" : "#efefef"};
+`
+
+const FourthStar = styled(Star)`
+  color: ${props => props.rating >= 4 ? "#ffd338" : "#efefef"};
+`
+
+const FifthStar = styled(Star)`
+  color: ${props => props.rating >= 5 ? "#ffd338" : "#efefef"};
+`
 
 const Review = styled.div`
   display: flex;
-  padding: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   box-sizing: border-box;
   border-bottom: 1px solid #efefef;
+  padding-left: 40px;
+  padding-right: 40px;
 `
 
 const Profile = styled.div`
@@ -65,13 +96,7 @@ const Number = styled.div`
 
 const Stars = styled.div`
   display: flex;
-`
-
-const Star = styled.div`
-  width: 19px;
-  height: 19px;
-  background-image: url("https://cdn2.iconfinder.com/data/icons/modifiers-add-on-1-flat/48/Mod_Add-On_1-35-512.png");
-  background-size: cover;
+  margin-right: 9px;
 `
 
 const Sentence = styled.div`
@@ -88,7 +113,7 @@ const Picture = styled.div`
   width: 62px;
   height: 62px;
   border-radius: 50%;
-  background-color: #1abc9c;
+  background-color: #efefef;
   margin-right: 16px;
 `
 
@@ -104,10 +129,10 @@ const UserName = styled.div`
   font-weight: bold;
   letter-spacing: -0.25px;
   color: #191919;
+  margin-bottom: 5px;
 `
 
 const BeWrittenDate = styled.div`
-  width: 59px;
   height: 20px;
   font-family: SpoqaHanSans;
   font-size: 12px;

@@ -2,7 +2,9 @@ import React from 'react';
 import styled, {ThemeProvider} from 'styled-components';
 import InputText from '../../components/InputText';
 import Button from '../../components/Button';
-import logoNonoPlan from '../../assets/logoNonoPlan.gif';
+import logoNonoPlan from '../../images/logo.gif';
+import LoginModal from '../../components/LoginModal';
+import { useHistory } from 'react-router-dom';
 
 const HeaderContainer = styled.header`
   height:88px;
@@ -10,9 +12,13 @@ const HeaderContainer = styled.header`
   display:flex;
   justify-content:space-around;
   margin: 0 auto;
+  padding: 0 20px;
+  background-color: #ffffff;
 `;
 const ImgLogo = styled.img`
-  height: 24px;
+  display:inline-block;
+  width: 107px
+  /* height: 24px; */
   margin:auto 0;
 `;
 const DivSearchInput = styled.div`
@@ -29,17 +35,22 @@ const palette = {
 	pink: '#f06595'
 }
 function Header() {
+  const history = useHistory();
+  const handleClick=()=>{
+    history.push("/");
+  }
   return (
     <HeaderContainer>
-        <ImgLogo src={logoNonoPlan} alt="Nonoplan 로고"/>
+          <ImgLogo src={logoNonoPlan} alt="Nonoplan 로고" onClick={handleClick}/>
         <DivSearchInput>
-          <InputText isLabel={false} size="default"
+          <InputText isLabel={false} size="default" placeholder="분위기 좋은 카페는 어때요?"
             style={{minWidth:"100px",maxWidth:"460px",width:"100%",margin:"0 auto"}}/>
         </DivSearchInput>
         
-        <ThemeProvider theme={{palette}}>
+        {/* <ThemeProvider theme={{palette}}>
           <Button color="purple" style={{margin:"auto 0"}}>로그인</Button>
-        </ThemeProvider>
+        </ThemeProvider> */}
+        <LoginModal />
     </HeaderContainer>
   )
 }

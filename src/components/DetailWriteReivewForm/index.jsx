@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 
 class DetailWriteReviewForm extends Component {
@@ -8,7 +9,19 @@ class DetailWriteReviewForm extends Component {
     this.state = {
       reviewContents: "",
       reviewLength: 0,
+      rating: 0,
     }
+  }
+
+  // locationId에 리뷰 작성
+  postLocationReivews = (content, locationId=0, rating, lastUpdateAt, reviewId, userId, username) => {
+    const endpoint = `http://34.97.253.140/locations/${locationId}/reviews`;
+    // ?content=${content}&lastUpdateAt=${lastUpdateAt}&locationId=${locationId}&rating=${rating}&reviewId=${reviewId}&userId=${userId}&username=${username}
+    const config = { headers: { 'Content-Type': 'application/json'} };
+    const getLocationReivews = axios.post(endpoint, config);
+    getLocationReivews.then(res => {
+      console.log(res);
+    }).catch(err => console.log(err));
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -24,8 +37,27 @@ class DetailWriteReviewForm extends Component {
     this.setState({ reviewContents: e.target.value });
   }
 
+  setRatingOne = () => {
+    this.setState({ rating: 1 })
+  }
+
+  setRatingTwo = () => {
+    this.setState({ rating: 2 })
+  }
+
+  setRatingThree = () => {
+    this.setState({ rating: 3 })
+  }
+
+  setRatingFour = () => {
+    this.setState({ rating: 4 })
+  }
+
+  setRatingFive = () => {
+    this.setState({ rating: 5 })
+  }
+
   render() {
-    console.log(this.props);
     return (
       <>
         <Background />
@@ -35,11 +67,11 @@ class DetailWriteReviewForm extends Component {
               <FirstText>와이키키 절벽</FirstText>
             </Title>
             <Stars>
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <Star />
+              <FirstStar rating={this.state.rating} onClick={this.setRatingOne}>★</FirstStar>
+              <SecondStar rating={this.state.rating} onClick={this.setRatingTwo}>★</SecondStar>
+              <ThirdStar rating={this.state.rating} onClick={this.setRatingThree}>★</ThirdStar>
+              <FourthStar rating={this.state.rating} onClick={this.setRatingFour}>★</FourthStar>
+              <FifthStar rating={this.state.rating} onClick={this.setRatingFive}>★</FifthStar>
             </Stars>
             <Pharse>
               <SecondText>방문한 장소를 평가해주세요!</SecondText>
@@ -53,7 +85,11 @@ class DetailWriteReviewForm extends Component {
                 <CancelText>취소</CancelText>
               </Cancel>
               <Confirm>
-                <ConfirmText>확인</ConfirmText>
+                <ConfirmText onClick={() => {
+                  this.postLocationReivews(this.state.reviewContents, 0, this.state.rating);
+                  this.props.handleToFalseWriteReivew();}}>
+                  {"확인"}
+                </ConfirmText>
               </Confirm>
             </Footer>
           </Box>
@@ -132,8 +168,32 @@ const Stars = styled.div`
 const Star = styled.div`
   width: 38px;
   height: 38px;
-  background-color: #efefef;
   margin-right: 4px;
+  text-align: center;
+  font-size: 44px;
+  color: #efefef;
+  cursor: pointer;
+  transition: 0.5s;
+`
+
+const FirstStar = styled(Star)`
+  color: ${props => props.rating >= 1 ? "#ffd338" : "#efefef"};
+`
+
+const SecondStar = styled(Star)`
+  color: ${props => props.rating >= 2 ? "#ffd338" : "#efefef"};
+`
+
+const ThirdStar = styled(Star)`
+  color: ${props => props.rating >= 3 ? "#ffd338" : "#efefef"};
+`
+
+const FourthStar = styled(Star)`
+  color: ${props => props.rating >= 4 ? "#ffd338" : "#efefef"};
+`
+
+const FifthStar = styled(Star)`
+  color: ${props => props.rating >= 5 ? "#ffd338" : "#efefef"};
 `
 
 const Pharse = styled.div`
