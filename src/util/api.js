@@ -1,15 +1,15 @@
 import axios from 'axios';
 // const API_URL = 'http://34.97.253.140';
 const API_URL = 'http://15.165.176.164:8080';
-export async function getUsers(){
-    const res = await axios.get('http://jsonplaceholder.typicode.com/users');
-    return res.data;
-}
+// export async function getUsers(){
+//     const res = await axios.get('http://jsonplaceholder.typicode.com/users');
+//     return res.data;
+// }
 
-export async function getUser(id){
-    const res = await axios.get(`http://jsonplaceholder.typicode.com/${id}`);
-    return res.data;
-}
+// export async function getUser(id){
+//     const res = await axios.get(`http://jsonplaceholder.typicode.com/${id}`);
+//     return res.data;
+// }
 
 export async function getLocations(x,y,filter='',pageNum='',pageSize=''){
     // const res = await axios.get(`${API_URL}/locations`);
