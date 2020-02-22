@@ -5,7 +5,8 @@ import { createAsyncDispatcher, initAsyncState, createAsyncHandler } from './asy
 const initState = {
 	users: initAsyncState,
     user: initAsyncState,
-    locations: initAsyncState
+    locations: initAsyncState,
+    location: initAsyncState
     // (필수) 추가할 데이터에 대한 초기값을 지정
     // (예시) posts: initAsyncState,
 };
@@ -13,6 +14,7 @@ const initState = {
 const usersHandler = createAsyncHandler('GET_USERS', 'users');
 const userHandler = createAsyncHandler('GET_USER', 'user');
 const locationsHandler = createAsyncHandler('GET_LOCATIONS', 'locations');
+const locationHandler = createAsyncHandler('GET_LOCATION', 'location');
 // (필수) 추가할 데이터에 대한 reduce Handler을 생성
 // (예시) const postsHandler = createAsyncHandler('GET_POSTS', 'posts');
 
@@ -35,6 +37,11 @@ function dataReducer(state, action){
         case 'GET_LOCATIONS_SUCCESS':
         case 'GET_LOCATIONS_ERROR':
             return locationsHandler(state, action);
+        // LOCATION/ID
+        case 'GET_LOCATION':
+        case 'GET_LOCATION_SUCCESS':
+        case 'GET_LOCATION_ERROR':
+            return locationHandler(state, action);
         // (필수) 추가할 데이터에 대한 분기 케이스를 지정하고 Handler 연결
         // (예시) POST
         // case 'GET_POSTS':
@@ -49,6 +56,7 @@ function dataReducer(state, action){
 export const getUsers = createAsyncDispatcher('GET_USERS', api.getUsers);
 export const getUser = createAsyncDispatcher('GET_USER', api.getUser);
 export const getLocations = createAsyncDispatcher('GET_LOCATIONS', api.getLocations);
+export const getLocation = createAsyncDispatcher('GET_LOCATION', api.getLocation);
 // (필수) HTTP 통신으로 데이터를 호출할 컴포넌트에서 사용할 함수명을 정의하고 createAsyncDispatcher() 반환값 할당(하고 비동기로 작업할 내용 )
 // (예시) export const getPosts = createAsyncDispatcher('GET_POSTS', api.getPosts);
 

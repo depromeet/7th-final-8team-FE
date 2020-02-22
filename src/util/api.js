@@ -21,6 +21,16 @@ export async function getLocations(x,y,filter='',pageNum='',pageSize=''){
     return res.data;
 }
 
+export async function getLocation(id){
+    console.log(id);
+    const res = await axios({
+        method: 'get',
+        url: `http://34.97.253.140/locations/${id}`,
+        header: { "Content-type": "application/json; charset=UTF-8" },
+    });
+    return res.data;
+}
+
 // API 통신할 프로미스 함수 정의
 // (예시)
 // export async function getPosts(){
