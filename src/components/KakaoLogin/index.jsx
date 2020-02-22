@@ -4,7 +4,7 @@ import styled from 'styled-components';
 class KakaoLogin extends Component {
   componentDidMount() {
     const APPKEY = `${process.env.REACT_APP_KAKAO_KEY}`;
-    // if (window.Kakao === undefined) {
+    if (window.Kakao === undefined) {
       window.Kakao.init(APPKEY);
       // 카카오 로그인 버튼을 생성합니다.
       window.Kakao.Auth.createLoginButton({
@@ -18,7 +18,7 @@ class KakaoLogin extends Component {
           alert(JSON.stringify(err));
         }
       });
-    // }
+    }
   }
   render() {
     return (

@@ -17,12 +17,12 @@ function PlaceDetailRecommendTab({datas}) {
 
 PlaceDetailRecommendTab.defaultProps = {
   datas: [
-    { type:"관광", name:"와인키키절벽", rating:"3.9", numberOfReviews:"7", km:"10", picture:"red" },
-    { type:"관광", name:"와인키키절벽", rating:"3.9", numberOfReviews:"7", km:"10", picture:"red"  },
-    { type:"관광", name:"와인키키절벽", rating:"3.9", numberOfReviews:"7", km:"10", picture:"red"  },
-    { type:"관광", name:"와인키키절벽", rating:"3.9", numberOfReviews:"7", km:"10", picture:"red"  },
-    { type:"관광", name:"와인키키절벽", rating:"3.9", numberOfReviews:"7", km:"10", picture:"red"  },
-    { type:"관광", name:"와인키키절벽", rating:"3.9", numberOfReviews:"7", km:"10", picture:"red"  },
+    { locationId:10, category:"ATTRACTIONS", name:"와인키키절벽", rating:"3.9", reviewCount:"7", km:"10", images:["https://picsum.photos/420/421"] },
+    { locationId:10, category:"ATTRACTIONS", name:"와인키키절벽", rating:"3.9", reviewCount:"7", km:"10", images:["https://picsum.photos/420/422"]  },
+    { locationId:10, category:"ATTRACTIONS", name:"와인키키절벽", rating:"3.9", reviewCount:"7", km:"10", images:["https://picsum.photos/420/423"]  },
+    { locationId:10, category:"ATTRACTIONS", name:"와인키키절벽", rating:"3.9", reviewCount:"7", km:"10", images:["https://picsum.photos/420/424"]  },
+    { locationId:10, category:"ATTRACTIONS", name:"와인키키절벽", rating:"3.9", reviewCount:"7", km:"10", images:["https://picsum.photos/420/425"]  },
+    { locationId:10, category:"ATTRACTIONS", name:"와인키키절벽", rating:"3.9", reviewCount:"7", km:"10", images:["https://picsum.photos/420/426"]  },
   ]
 }
 export default PlaceDetailRecommendTab;
