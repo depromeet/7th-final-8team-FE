@@ -31,7 +31,7 @@ class Home extends React.Component {
             <Map />
           </CenterIdContext.Provider>
         </DataProvider>
-        <LoginModal isMainPage={true}/>
+        {/* <LoginModal isMainPage={true}/> */}
       </>
     );
   }

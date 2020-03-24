@@ -47,9 +47,9 @@ const PlaceInfoHeader =({type, name, rating, numberOfReviews, km,})=> (<>
   <h1>{name}</h1>
   <DivStarReviewCnt>
     {/* 별점 */}
-    <div>
+    {/* <div>
       <span>{rating}</span>
-    </div>
+    </div> */}
     {/* 리뷰수 */}
     <div>리뷰 <span>{numberOfReviews}</span>개</div>
   </DivStarReviewCnt>
@@ -88,7 +88,8 @@ function PlaceDetail({type, name, rating, numberOfReviews, km,}) {
           facilities={location.detail}
           url={undefined}
         />,
-        <DetailReviews/>, <PlaceDetailRecommendTab/>]
+        // <DetailReviews/>,
+        <PlaceDetailRecommendTab/>]
       }
     />
   )
