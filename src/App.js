@@ -12,7 +12,7 @@ function App() {
         <Route exact path="/home" component={Home}/>
         {/* <Route path="/details" component={Details}/> */}
         <Route exact path="/details/:locationId" component={Details}/>
-        <Route path="/mypage" component={MyPage}/>
+        {/* <Route path="/mypage" component={MyPage}/> */}
       </Switch>
     </BrowserRouter>
   );
